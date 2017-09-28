@@ -17,7 +17,7 @@ public class Nodo : MonoBehaviour {
 
 	void OnDrawGizmos(){
 		Gizmos.color = Color.white;
-		Gizmos.DrawWireSphere (transform.position,15);
+		Gizmos.DrawWireSphere (transform.position,25);
 
 		Gizmos.color = Color.white;
 		for (int i = 0; i < vecinos.Length; i++) {
@@ -29,6 +29,6 @@ public class Nodo : MonoBehaviour {
 
 	void OnDrawGizmosSelected(){
 		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere (transform.position,15);
+		Gizmos.DrawWireSphere (transform.position,25);
 	}
 }
