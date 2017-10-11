@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
-	private int [] numerosArray = {5,2,6 }; // Número de naves  = número del arreglo -1
+	private int [] numerosArray = {4,2,6 }; // Número de naves  = número del arreglo -1
 	private int numeroDeJuegos;
 	private float height,width,separacionNaves,i, posInicial;
 	private string respuesta;
@@ -54,10 +54,10 @@ public class Nivel0 : MonoBehaviour {
 		//Instansiar las naver con base al numero 
 		separacionNaves = width / numerosArray[0]; // Calcular el espacio entre naves 
 		for(i=separacionNaves;i<width;i+=separacionNaves){
-			Instantiate (nave[0],
+			GameObject ship = Instantiate (nave[0],
 						new Vector3(transform.position.x + i , transform.position.y, transform.position.z),
-				Quaternion.Euler(90,-90,90));
-			//Naves nav = gameObject.GetComponent<Naves>;
+				Quaternion.Euler(90,-90,90)) as GameObject;
+			
 		}
 
 

@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class MapController : MonoBehaviour
 {
 
     private GameObject planetPanel;
     private Text planetName, planetDescription;
+    public GameObject cookie;
 
+    public Button jugar;
     void Start()
     {
         planetPanel = GameObject.Find("PlanetInfo");
@@ -17,17 +22,24 @@ public class MapController : MonoBehaviour
         planetPanel.SetActive(false);
         //planetName.enabled = false;
         //planetDescription.enabled = false;
+        cookie = GameObject.Find("Cookies");
+        Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
+        Debug.Log("Imprimiendo desde cookies = "+ cook["apellidos"]);
 
+        jugar.onClick.AddListener(entrarJuego);
     }
 
+    void entrarJuego(){
+        SceneManager.LoadScene("Nivel0");
+    }
     // Update is called once per frame
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-        Debug.DrawRay(transform.position, forward, Color.green);
+        //Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+        //Debug.DrawRay(transform.position, forward, Color.green);
 
         if (Physics.Raycast(ray, out hit))
         {
@@ -35,99 +47,98 @@ public class MapController : MonoBehaviour
             {
                 planetPanel.SetActive(true);
                 planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetDescription.text = "Cuenta las naves y elige en numero correcto para ganar. ";
 
             }
 
             if (hit.transform.name == "Planeta1" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Sistema Monetario";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Numeracion con letra";
+                planetDescription.text = "Escribe en letra el numero.";
 
             }
 
             if (hit.transform.name == "Planeta2" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Culichilandia";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Sumas";
+                planetDescription.text = "Ejercicios de sumas basicas.";
 
             }
 
             if (hit.transform.name == "Planeta3" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Pastocas";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Sumas 2";
+                planetDescription.text = "Ejercicios de sumas un poco mas complicadas. ";
 
             }
 
             if (hit.transform.name == "Planeta4" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Sexo Anal";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Restitas";
+                planetDescription.text = "Ejercicios de restas sencillos.";
 
             }
 
             if (hit.transform.name == "Planeta5" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Weed Planet";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Restotas";
+                planetDescription.text = "Ejercicios de restas mas grandotas. ";
 
             }
 
             if (hit.transform.name == "Planeta6" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Sumas Verticales";
+                planetDescription.text = "Cambio de sumas horizontales a verticales. ";
 
             }
 
             if (hit.transform.name == "Planeta7" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Restas Verticales ";
+                planetDescription.text = "Cambio de restas horizontales a verticales. ";
 
             }
 
             if (hit.transform.name == "Planeta8" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Sumas y restas. ";
+                planetDescription.text = "Combinacion de sumas y restas";
 
             }
 
             if (hit.transform.name == "Planeta9" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "No se ";
+                planetDescription.text = "";
 
             }
 
             if (hit.transform.name == "Planeta10" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "Npi";
+                planetDescription.text = "";
 
             }
 
             if (hit.transform.name == "Planeta11" && Input.GetMouseButtonDown(0))
             {
                 planetPanel.SetActive(true);
-                planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Me pelan la verga todos";
+                planetName.text = "I'm lost";
+                planetDescription.text = "";
 
             }
-
-            
+            // Pendientes, desaparecer el menu                 
 
         }
     }
