@@ -15,8 +15,14 @@ public class Nivel0 : MonoBehaviour {
 	private Text ganaste;
 	private GameObject[] ships;
 
+	private Naves patron;
+	private bool sacarNaves;
+	private Vector3 currentPosition;
+
 	// Use this for initialization
 	void Start () {
+
+		sacarNaves = false;
 		//referencia al texto de ganar 
 		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
 		ganaste.enabled = false;
@@ -66,32 +72,49 @@ public class Nivel0 : MonoBehaviour {
 
 
 	}
+
+	void Update(){
+		if(sacarNaves){
+			for(j= 0; j<numerosArray[0] - 1;j++){
+				currentPosition = ships[j].transform.position;
+				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
+			}
+		}
+	}
+	void desactivarPatron(){
+		for(j= 0; j<numerosArray[0] - 1;j++){
+				patron = ships[j].GetComponent<Naves>();
+				patron.enabled = false;
+			}
+			sacarNaves = true;
+	}
+
 	
+
 	void respuesta1(){
 		if(ans1Txt.text == respuesta){
-			Debug.Log ("Ganaste la respuesta es " + ans1Txt.text);
 			ganaste.enabled = true;
-			for(j= 0; j<numerosArray[0];j++){
-				//ships[j].transform.position = new
-			}
+			desactivarPatron();
 		}
 
 	}
 
 	void respuesta2(){
 		if(ans2Txt.text == respuesta){
-			Debug.Log ("Ganaste la respuesta es " + ans2Txt.text);
 			ganaste.enabled = true;
+			desactivarPatron();
 		}
 
 	}
 
 	void respuesta3(){
 		if(ans3Txt.text == respuesta){
-			Debug.Log ("Ganaste la respuesta es " + ans3Txt.text);
 			ganaste.enabled = true;
+			desactivarPatron();
 		}
 
 	}
+
+
 
 }

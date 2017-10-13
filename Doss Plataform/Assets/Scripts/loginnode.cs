@@ -37,8 +37,6 @@ public class loginnode : MonoBehaviour
 			if (!www.isError) {
 				string resp = www.downloadHandler.text.Replace ('"', ' ').Replace ('{', ' ').Replace ('}', ' ').Trim ();
 				Dictionary<string,string> dictionary = ConvertDictionary (resp);
-				//Debug.Log (dictionary["apellidos"]);
-				Debug.Log (dictionary ["nombres"]);
 				cookie.GetComponent<sesion>().setcookie(dictionary);
 				Dictionary<string,string> cook=cookie.GetComponent<sesion>().getcookie();
 				SceneManager.LoadScene("planet");

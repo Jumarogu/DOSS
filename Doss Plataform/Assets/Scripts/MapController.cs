@@ -28,7 +28,6 @@ public class MapController : MonoBehaviour
         //planetDescription.enabled = false;
         cookie = GameObject.Find("Cookies");
         Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
-        Debug.Log("Imprimiendo desde cookies = "+ cook["apellidos"]);
         playerName.text = cook["nombres"] + " " + cook["apellidos"];
 
         mascota = GameObject.Find("Mascota").GetComponent<Image>();
@@ -47,6 +46,7 @@ public class MapController : MonoBehaviour
 
     void entrarJuego(){
         SceneManager.LoadScene("Nivel0");
+        Debug.Log("Entre al juego ");
     }
     // Update is called once per frame
     void Update()
