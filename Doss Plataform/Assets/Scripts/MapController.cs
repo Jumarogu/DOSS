@@ -9,22 +9,24 @@ public class MapController : MonoBehaviour
 {
 
     private GameObject planetPanel;
-    private Text planetName, planetDescription;
+    private Text planetName, planetDescription,playerName;
     public GameObject cookie;
 
     public Button jugar;
     void Start()
     {
-        planetPanel = GameObject.Find("PlanetInfo");
+        planetPanel = GameObject.Find("PlanetInfo");        
 
         planetName = GameObject.Find("PlanetInfo").GetComponentInChildren<UnityEngine.UI.Text>();
         planetDescription = GameObject.Find("PlanetDescription").GetComponent<UnityEngine.UI.Text>();
+        playerName = GameObject.Find("NamePanel").GetComponentInChildren<UnityEngine.UI.Text>();
         planetPanel.SetActive(false);
         //planetName.enabled = false;
         //planetDescription.enabled = false;
         cookie = GameObject.Find("Cookies");
         Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
         Debug.Log("Imprimiendo desde cookies = "+ cook["apellidos"]);
+        playerName.text = cook["nombres"] + " " + cook["apellidos"];
 
         jugar.onClick.AddListener(entrarJuego);
     }
