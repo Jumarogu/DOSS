@@ -8,6 +8,7 @@ public class switchMascota : MonoBehaviour {
 	public Sprite leon;
 	public Sprite delfin;
 
+	
 
 	// Use this for initialization
 	void Start () {
@@ -21,11 +22,10 @@ public class switchMascota : MonoBehaviour {
 
 		if (target.value==1) {
 			gameObject.GetComponent<Image> ().sprite = leon;
-			Debug.Log ("Se eligio un Leon");
+			
 		}
 		if (target.value==0) {
 			gameObject.GetComponent<Image> ().sprite = delfin;
-			Debug.Log ("Se eligio un Delfin");
 
 		}
 	}

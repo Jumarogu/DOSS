@@ -31,7 +31,7 @@ public class loginnode : MonoBehaviour
 		form.AddField("noLista", NoLista.options[NoLista.value].text);
 		form.AddField("grupo", Grupo.options[Grupo.value].text);
 
-		using (UnityWebRequest www = UnityWebRequest.Post("http://192.168.1.77:8080/api/login-alumno", form))
+		using (UnityWebRequest www = UnityWebRequest.Post("http://10.43.52.177:8080/api/login-alumno", form))
 		{
 			yield return www.Send();
 			if (!www.isError) {

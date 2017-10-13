@@ -6,13 +6,14 @@ public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
 	private int [] numerosArray = {4,2,6 }; // Número de naves  = número del arreglo -1
-	private int numeroDeJuegos;
+	private int numeroDeJuegos, j ;
 	private float height,width,separacionNaves,i, posInicial;
 	private string respuesta;
 	private Camera cam; 
 	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt;
 	private Button ans1Btn,ans2Btn,ans3Btn;
 	private Text ganaste;
+	private GameObject[] ships;
 
 	// Use this for initialization
 	void Start () {
@@ -50,13 +51,16 @@ public class Nivel0 : MonoBehaviour {
 		//ubicar el generador en el borde de la pantalla
 		
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
+		ships = new GameObject [numerosArray[0]];
 		
 		//Instansiar las naver con base al numero 
 		separacionNaves = width / numerosArray[0]; // Calcular el espacio entre naves 
+		j = 0; 
 		for(i=separacionNaves;i<width;i+=separacionNaves){
-			GameObject ship = Instantiate (nave[0],
+			ships[j] = Instantiate (nave[0],
 						new Vector3(transform.position.x + i , transform.position.y, transform.position.z),
 				Quaternion.Euler(90,-90,90)) as GameObject;
+				j++;
 			
 		}
 
@@ -67,6 +71,9 @@ public class Nivel0 : MonoBehaviour {
 		if(ans1Txt.text == respuesta){
 			Debug.Log ("Ganaste la respuesta es " + ans1Txt.text);
 			ganaste.enabled = true;
+			for(j= 0; j<numerosArray[0];j++){
+				//ships[j].transform.position = new
+			}
 		}
 
 	}

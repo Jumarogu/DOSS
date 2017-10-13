@@ -11,6 +11,9 @@ public class MapController : MonoBehaviour
     private GameObject planetPanel;
     private Text planetName, planetDescription,playerName;
     public GameObject cookie;
+    public Sprite Lion;
+    public Sprite Dolphin;
+    private Image mascota;
 
     public Button jugar;
     void Start()
@@ -27,6 +30,17 @@ public class MapController : MonoBehaviour
         Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
         Debug.Log("Imprimiendo desde cookies = "+ cook["apellidos"]);
         playerName.text = cook["nombres"] + " " + cook["apellidos"];
+
+        mascota = GameObject.Find("Mascota").GetComponent<Image>();
+
+        //Poner la mascota
+        if(cook["grupo"] == "A"){
+            mascota.sprite = Dolphin;
+        }
+        if(cook["grupo"] == "b"){
+            mascota.sprite = Lion;
+        }
+        
 
         jugar.onClick.AddListener(entrarJuego);
     }
