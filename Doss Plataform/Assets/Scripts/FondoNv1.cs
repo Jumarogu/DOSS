@@ -17,6 +17,6 @@ public class FondoNv1 : MonoBehaviour {
     void Update()
     {
         float newPosition = Mathf.Repeat(Time.time * speed, tileSize);
-        gameObject.transform.position = startPosition + Vector3.right* newPosition;
+        gameObject.transform.position = startPosition + Vector3.left * newPosition;
     }
 }
