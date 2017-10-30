@@ -16,4 +16,11 @@ public class Naves : MonoBehaviour {
  	{
 		transform.position = _startPosition + new Vector3(0.0f, Mathf.Sin(Time.time* speed) * amplitud, 0.0f);
 	}
+
+	void OnCollisionEnter(Collision collision){
+		if(collision.gameObject.name == "Destructor"){
+			Destroy(this.gameObject);
+		}
+	}
+
 }

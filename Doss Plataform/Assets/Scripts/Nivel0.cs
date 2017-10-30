@@ -6,9 +6,10 @@ public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
 	private int [] numerosArray ;
-	private int numeroDeJuegos, j ;
+	private int numeroDeJuegos, j , juegoActual;
 	private float height,width,separacionNaves,i, posInicial;
 	private string respuesta;
+	private string []respuestas;
 	private Camera cam; 
 	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt;
 	private Button ans1Btn,ans2Btn,ans3Btn;
@@ -28,7 +29,8 @@ public class Nivel0 : MonoBehaviour {
 		ganaste.enabled = false;
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>(); // Obtener la referencia a la camara
 		numeroDeJuegos = 3; 
-		respuesta = "3";
+		juegoActual = 0;
+		
 		//Calcular el tamaño de la pantalla 
 		height = 2f * cam.orthographicSize;
 		width = height * cam.aspect;
@@ -44,25 +46,21 @@ public class Nivel0 : MonoBehaviour {
 		ans2Btn = GameObject.Find("Answer2").GetComponent<UnityEngine.UI.Button>();
 		ans3Btn = GameObject.Find("Answer3").GetComponent<UnityEngine.UI.Button>();
 
-		//Poner las opciones en los botones
-		ans1Txt.text="5";
-		ans2Txt.text="3";
-		ans3Txt.text="1";
 
 		//Recuperar la respuesta
 		ans1Btn.onClick.AddListener(respuesta1);
 		ans2Btn.onClick.AddListener(respuesta2);
 		ans3Btn.onClick.AddListener(respuesta3);
 
-		
 		numerosRandom();
+		respuestasRandom();
 		generarNaves();
 
 	}
 
 	void Update(){
-		if(sacarNaves){
-			for(j= 0; j<numerosArray[0] - 1;j++){
+		if(sacarNaves && ships[0] != null){
+			for(j= 0; j<numerosArray[juegoActual] - 1;j++){
 				currentPosition = ships[j].transform.position;
 				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
 			}
@@ -81,17 +79,32 @@ public class Nivel0 : MonoBehaviour {
 		//generar el arreglo de numero de naves de forma aleatoria
 		numerosArray =  new int[numeroDeJuegos];
 		for(j=0;j<numeroDeJuegos;j++){
-			numerosArray[j]= Random.Range(2,11);
+			numerosArray[j]= Random.Range(2,10);
 		}
+	}
+
+	void respuestasRandom(){
+		respuestas = new string[numeroDeJuegos];
+		int num = 0;
+		for(j=0;j<numeroDeJuegos;j++){
+			num = numerosArray[j] - 1; 
+			respuestas[j]= num + "";
+			//Debug.Log("la respuesta es: " + num);
+		}
+		//Poner las opciones en los botones
+		ans1Txt.text= respuestas[0];
+		ans2Txt.text= respuestas[1];
+		ans3Txt.text= respuestas[2];
+
 	}
 
 	void generarNaves(){
 		//ubicar el generador en el borde de la pantalla		
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
-		ships = new GameObject [numerosArray[0]];
+		ships = new GameObject [numerosArray[juegoActual]];
 		
 		//Instansiar las naver con base al numero 
-		separacionNaves = width / numerosArray[0]; // Calcular el espacio entre naves 
+		separacionNaves = width / numerosArray[juegoActual]; // Calcular el espacio entre naves 
 		j = 0; 
 		for(i=separacionNaves;i<width;i+=separacionNaves){
 			ships[j] = Instantiate (nave[0],
@@ -105,7 +118,7 @@ public class Nivel0 : MonoBehaviour {
 	
 
 	void respuesta1(){
-		if(ans1Txt.text == respuesta){
+		if(ans1Txt.text == respuestas[juegoActual]){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}
@@ -113,7 +126,7 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuesta2(){
-		if(ans2Txt.text == respuesta){
+		if(ans2Txt.text == respuestas[juegoActual]){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}
@@ -121,7 +134,7 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuesta3(){
-		if(ans3Txt.text == respuesta){
+		if(ans3Txt.text == respuestas[juegoActual]){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}
