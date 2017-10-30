@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
-	private int [] numerosArray = {4,2,6 }; // Número de naves  = número del arreglo -1
+	private int [] numerosArray ;
 	private int numeroDeJuegos, j ;
 	private float height,width,separacionNaves,i, posInicial;
 	private string respuesta;
@@ -54,8 +54,39 @@ public class Nivel0 : MonoBehaviour {
 		ans2Btn.onClick.AddListener(respuesta2);
 		ans3Btn.onClick.AddListener(respuesta3);
 
-		//ubicar el generador en el borde de la pantalla
 		
+		numerosRandom();
+		generarNaves();
+
+	}
+
+	void Update(){
+		if(sacarNaves){
+			for(j= 0; j<numerosArray[0] - 1;j++){
+				currentPosition = ships[j].transform.position;
+				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
+			}
+		}
+	}
+
+	void desactivarPatron(){
+		for(j= 0; j<numerosArray[0] - 1;j++){
+				patron = ships[j].GetComponent<Naves>();
+				patron.enabled = false;
+			}
+			sacarNaves = true;
+	}
+
+	void numerosRandom(){
+		//generar el arreglo de numero de naves de forma aleatoria
+		numerosArray =  new int[numeroDeJuegos];
+		for(j=0;j<numeroDeJuegos;j++){
+			numerosArray[j]= Random.Range(2,11);
+		}
+	}
+
+	void generarNaves(){
+		//ubicar el generador en el borde de la pantalla		
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
 		ships = new GameObject [numerosArray[0]];
 		
@@ -69,24 +100,6 @@ public class Nivel0 : MonoBehaviour {
 				j++;
 			
 		}
-
-
-	}
-
-	void Update(){
-		if(sacarNaves){
-			for(j= 0; j<numerosArray[0] - 1;j++){
-				currentPosition = ships[j].transform.position;
-				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
-			}
-		}
-	}
-	void desactivarPatron(){
-		for(j= 0; j<numerosArray[0] - 1;j++){
-				patron = ships[j].GetComponent<Naves>();
-				patron.enabled = false;
-			}
-			sacarNaves = true;
 	}
 
 	
