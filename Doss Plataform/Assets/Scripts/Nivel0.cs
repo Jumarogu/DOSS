@@ -6,9 +6,8 @@ public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
 	private int [] numerosArray ;
-	private int numeroDeJuegos, j , juegoActual;
+	private int numeroDeJuegos, j , juegoActual, numNavesEnJuegoActual;
 	private float height,width,separacionNaves,i, posInicial;
-	private string respuesta;
 	private string []respuestas;
 	private Camera cam; 
 	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt;
@@ -55,15 +54,22 @@ public class Nivel0 : MonoBehaviour {
 		numerosRandom();
 		respuestasRandom();
 		generarNaves();
-
+		
 	}
 
 	void Update(){
-		if(sacarNaves && ships[0] != null){
+		if(sacarNaves && ships[0]!= null){
 			for(j= 0; j<numerosArray[juegoActual] - 1;j++){
 				currentPosition = ships[j].transform.position;
 				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
 			}
+		}
+		Debug.Log("numero de naves en el juego: " + numNavesEnJuegoActual);
+		if(ships[0] ==  null){
+			juegoActual ++;
+			respuestasRandom();
+			generarNaves();
+			ganaste.enabled = false;
 		}
 	}
 
@@ -79,8 +85,9 @@ public class Nivel0 : MonoBehaviour {
 		//generar el arreglo de numero de naves de forma aleatoria
 		numerosArray =  new int[numeroDeJuegos];
 		for(j=0;j<numeroDeJuegos;j++){
-			numerosArray[j]= Random.Range(2,10);
+			numerosArray[j]= Random.Range(2,11);
 		}
+		
 	}
 
 	void respuestasRandom(){
@@ -99,6 +106,7 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void generarNaves(){
+		numNavesEnJuegoActual = numerosArray[juegoActual] - 1;
 		//ubicar el generador en el borde de la pantalla		
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
 		ships = new GameObject [numerosArray[juegoActual]];
