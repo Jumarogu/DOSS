@@ -5,6 +5,7 @@ import { LayoutRouting } from "./layout.routing";
 import { AMaterialModule } from '../material/material.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutComponent } from "./layout.component";
+import { SignInModule } from '../signin/signin.module';
 
 @NgModule ({
     declarations: [
@@ -18,7 +19,7 @@ import { LayoutComponent } from "./layout.component";
     imports: [
         CommonModule,
         LayoutRouting,
-        //SignInModule,
+        SignInModule,
         FormsModule,
         AMaterialModule
     ],
