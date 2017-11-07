@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Nivel0 : MonoBehaviour {
 
@@ -16,13 +17,13 @@ public class Nivel0 : MonoBehaviour {
 	private GameObject[] ships;
 
 	private Naves patron;
-	private bool sacarNaves;
+	private SalirNaves salida;
 	private Vector3 currentPosition;
 
 	// Use this for initialization
 	void Start () {
 
-		sacarNaves = false;
+		
 		//referencia al texto de ganar 
 		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
 		ganaste.enabled = false;
@@ -51,6 +52,9 @@ public class Nivel0 : MonoBehaviour {
 		ans2Btn.onClick.AddListener(respuesta2);
 		ans3Btn.onClick.AddListener(respuesta3);
 
+		//inicializar el arreglo de números
+		numerosArray =  new int[numeroDeJuegos];
+
 		numerosRandom();
 		respuestasRandom();
 		generarNaves();
@@ -58,34 +62,57 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void Update(){
-		if(sacarNaves && ships[0]!= null){
-			for(j= 0; j<numerosArray[juegoActual] - 1;j++){
-				currentPosition = ships[j].transform.position;
-				ships[j].transform.position = currentPosition + new Vector3(0.0f, 2f * Time.deltaTime, 0.0f);
-			}
-		}
-		Debug.Log("numero de naves en el juego: " + numNavesEnJuegoActual);
+
+		//Debug.Log("numero de naves en el juego: " + numNavesEnJuegoActual);
 		if(ships[0] ==  null){
 			juegoActual ++;
+			if(juegoActual > numeroDeJuegos){
+				SceneManager.LoadScene("planet");
+				Debug.Log("GAME OVER");
+
+			}
 			respuestasRandom();
 			generarNaves();
 			ganaste.enabled = false;
+			
+			
 		}
 	}
 
 	void desactivarPatron(){
-		for(j= 0; j<numerosArray[0] - 1;j++){
+		for(j= 0; j<numerosArray[juegoActual] - 1;j++){
 				patron = ships[j].GetComponent<Naves>();
 				patron.enabled = false;
 			}
-			sacarNaves = true;
+			
+		for(j=0; j<numerosArray[juegoActual] -1 ; j++){
+				salida = ships[j].GetComponent<SalirNaves>();
+				salida.enabled = true;
+		}
 	}
 
 	void numerosRandom(){
+		/*int [] temp;
+		int lleno, num;
+		lleno = 0;
+		while (lleno<=numeroDeJuegos)
+		{
+			num = Random.Range(2,11);
+			numerosArray[lleno] = num;
+			
+			if()
+		}
+		*/
+		int numPas, numActual;
+		numPas = 0 ;
 		//generar el arreglo de numero de naves de forma aleatoria
-		numerosArray =  new int[numeroDeJuegos];
 		for(j=0;j<numeroDeJuegos;j++){
-			numerosArray[j]= Random.Range(2,11);
+			numActual = Random.Range(2,11);
+			if(numActual != numPas){
+				Debug.Log(numActual + "");
+				numerosArray[j]= numActual;
+			}
+			numPas = numActual;
 		}
 		
 	}
