@@ -2,10 +2,9 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { LayoutRouting } from "./layout.routing";
-import {MatSidenavModule} from '@angular/material';
+import { AMaterialModule } from '../material/material.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutComponent } from "./layout.component";
-import { MatToolbarModule } from '@angular/material';
 
 @NgModule ({
     declarations: [
@@ -13,15 +12,15 @@ import { MatToolbarModule } from '@angular/material';
         NavComponent
     ],
     exports: [
-        LayoutComponent
+        LayoutComponent,
+        NavComponent
     ],
     imports: [
         CommonModule,
         LayoutRouting,
         //SignInModule,
-        MatSidenavModule,
         FormsModule,
-        MatToolbarModule
+        AMaterialModule
     ],
     providers: []
 })

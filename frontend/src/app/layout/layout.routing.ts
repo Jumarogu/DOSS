@@ -3,8 +3,8 @@ import { LayoutComponent } from './layout.component';
 
 const LAYOUT_ROUTES: Routes = [
     { path: '', component: LayoutComponent, children: [
-        //{path: '', redirectTo: '', pathMatch: 'full'},
-        //{ path: 'sign-in', loadChildren: '../sign-in/sign-in.module#SignInModule' },
+        {path: '', redirectTo: 'signin', pathMatch: 'full'},
+        { path: 'signin', loadChildren: '../signin/signin.module#SignInModule' },
 
         //{ path: 'padres', loadChildren: '../padres/padres.module#PadresModule' },
         //{ path: 'profesors', loadChildren: '../profesors/profesors.module#ProfesorsModule'}
