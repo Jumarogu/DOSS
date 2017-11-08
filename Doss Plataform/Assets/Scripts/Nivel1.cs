@@ -8,10 +8,10 @@ public class Nivel1 : MonoBehaviour {
 	private Camera cam; 
 	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt;
 	private Button ans1Btn,ans2Btn,ans3Btn;
-	private Text ganaste;
+	private Text ganaste, textoNumero;
 	private string [] numeros = {"Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez"}; 
 	private string [] respuestas; 
-	private int numeroDeJuegos , j;
+	private int numeroDeJuegos , j, juegoActual;
 	private int [] numerosArray;
 
 	// Use this for initialization
@@ -37,20 +37,41 @@ public class Nivel1 : MonoBehaviour {
 		ans3Btn = GameObject.Find("Answer3").GetComponent<UnityEngine.UI.Button>();
 
 		//referencia al texto de ganar 
-		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
-		ganaste.enabled = false;
+		//ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
+		//ganaste.enabled = false;
+
+		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
 
 		//Settear el numero de juegos
 		numeroDeJuegos = 3;
+		juegoActual = 0;
 
 		//inicializar el arreglo de números
 		numerosArray =  new int[numeroDeJuegos];
 
+		numerosRandom();
+		respuestasRandom();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void numerosRandom(){
+
+		int numPas, numActual;
+		numPas = 0 ;
+		//generar el arreglo de numero de naves de forma aleatoria
+		for(j=0;j<numeroDeJuegos;j++){
+			numActual = Random.Range(1,10);
+			if(numActual != numPas){
+				//Debug.Log(numActual + "");
+				numerosArray[j]= numActual;
+			}
+			numPas = numActual;
+		}
+		
 	}
 
 	void respuestasRandom(){
@@ -59,12 +80,10 @@ public class Nivel1 : MonoBehaviour {
 		for(j=0;j<numeroDeJuegos;j++){
 			num = numerosArray[j] - 1; 
 			respuestas[j]= num + "";
-			//Debug.Log("la respuesta es: " + num);
+			Debug.Log("la respuesta es: " + num);
 		}
 		//Poner las opciones en los botones
-		ans1Txt.text= respuestas[0];
-		ans2Txt.text= respuestas[1];
-		ans3Txt.text= respuestas[2];
+		textoNumero.text = respuestas[juegoActual];
 
 	}
 

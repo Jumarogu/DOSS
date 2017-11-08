@@ -92,24 +92,14 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void numerosRandom(){
-		/*int [] temp;
-		int lleno, num;
-		lleno = 0;
-		while (lleno<=numeroDeJuegos)
-		{
-			num = Random.Range(2,11);
-			numerosArray[lleno] = num;
-			
-			if()
-		}
-		*/
+
 		int numPas, numActual;
 		numPas = 0 ;
 		//generar el arreglo de numero de naves de forma aleatoria
 		for(j=0;j<numeroDeJuegos;j++){
 			numActual = Random.Range(2,11);
 			if(numActual != numPas){
-				Debug.Log(numActual + "");
+				//Debug.Log(numActual + "");
 				numerosArray[j]= numActual;
 			}
 			numPas = numActual;
