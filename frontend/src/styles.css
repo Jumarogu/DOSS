@@ -5,7 +5,14 @@
 .default-primary-color { background: #00BCD4; }
 .light-primary-color   { background: #B2EBF2; }
 .text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #7C4DFF; }
+.accent-color          { background: #E040FB; }
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #757575; }
 .divider-color         { border-color: #BDBDBD; }
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #E040FB;;
+  }
+  
+  .mat-ripple-element {
+    background: rgba(224, 64, 251, .3) !important;
+  }
