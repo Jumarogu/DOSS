@@ -12,7 +12,6 @@ public class Nivel0 : MonoBehaviour {
 	private string []respuestas;
 	private string respuestaNino;
 	private Camera cam; 
-	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt ;
 	private UnityEngine.UI.Text [] ansTextArray;
 	private Button ans1Btn,ans2Btn,ans3Btn;
 	private Text ganaste;
@@ -45,10 +44,7 @@ public class Nivel0 : MonoBehaviour {
 			Debug.Log(txt);
 			ansTextArray[k] = GameObject.Find(txt).GetComponent<UnityEngine.UI.Text>();
 		}
-		/*ans1Txt = GameObject.Find("TextAns1").GetComponent<UnityEngine.UI.Text>();
-		ans2Txt = GameObject.Find("TextAns2").GetComponent<UnityEngine.UI.Text>();
-		ans3Txt = GameObject.Find("TextAns3").GetComponent<UnityEngine.UI.Text>();*/
-
+		
 		//Inicializar los botones
 		ans1Btn = GameObject.Find("Answer1").GetComponent<UnityEngine.UI.Button>();
 		ans2Btn = GameObject.Find("Answer2").GetComponent<UnityEngine.UI.Button>();
@@ -102,23 +98,13 @@ public class Nivel0 : MonoBehaviour {
 	void numerosRandom(){
 
 		int numPas, numActual;
-		numPas = 0 ;respuestaNino = ansTextArray[0].text;
-		//generar el arreglo de numero de naves de forma aleatoria
-		/*for(j=0;j<numeroDeJuegos;j++){
-			numActual = Random.Range(1,10);
-			if(numActual != numPas){
-				Debug.Log(numActual + "");
-				numerosArray[j]= numActual;
-			}
-			numPas = numActual;
-		}*/
+		numPas = 0 ;
 
 		while (j<numeroDeJuegos)
 		{
 			numActual = Random.Range(2,11);
 			if(numActual != numPas){
 				numerosArray[j] = numActual;
-				Debug.Log("Numero de naves en el juego " + j + ": " + numActual);
 				j++;
 			}
 			numPas = numActual;
@@ -127,20 +113,7 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuestasRandom(){
-		/*
-		respuestas = new string[numeroDeJuegos];
-		int num = 0;
-		for(j=0;j<numeroDeJuegos;j++){
-			num = numerosArray[j] - 1; 
-			respuestas[j]= num + "";
-
-			//Debug.Log("la respuesta es: " + num);
-		}
-		//Poner las opciones en los botones
-		ans1Txt.text= respuestas[2] ;
-		ans2Txt.text= respuestas[0] ;
-		ans3Txt.text= respuestas[1] ;
-		*/
+		
 		for(j=0;j<3;j++){
 			ansTextArray[j].text = Random.Range(1,10)  + "";
 		}
@@ -166,7 +139,7 @@ public class Nivel0 : MonoBehaviour {
 				j++;
 			
 		}
-		//Debug.Log(separacionNaves + "");
+
 	}
 
 	
