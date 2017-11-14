@@ -10,8 +10,10 @@ public class Nivel0 : MonoBehaviour {
 	private int numeroDeJuegos, j , juegoActual, numNavesEnJuegoActual;
 	private float height,width,separacionNaves,i, posInicial;
 	private string []respuestas;
+	private string respuestaNino;
 	private Camera cam; 
-	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt;
+	private UnityEngine.UI.Text ans1Txt, ans2Txt, ans3Txt ;
+	private UnityEngine.UI.Text [] ansTextArray;
 	private Button ans1Btn,ans2Btn,ans3Btn;
 	private Text ganaste;
 	private GameObject[] ships;
@@ -37,9 +39,15 @@ public class Nivel0 : MonoBehaviour {
 		posInicial = width / 2; 
 
 		//Referencias al Texto de los botones
-		ans1Txt = GameObject.Find("TextAns1").GetComponent<UnityEngine.UI.Text>();
+		ansTextArray = new Text [3];
+		for(int k = 0 ;k<3;k++){
+			string txt = "TextAns"+k;
+			Debug.Log(txt);
+			ansTextArray[k] = GameObject.Find(txt).GetComponent<UnityEngine.UI.Text>();
+		}
+		/*ans1Txt = GameObject.Find("TextAns1").GetComponent<UnityEngine.UI.Text>();
 		ans2Txt = GameObject.Find("TextAns2").GetComponent<UnityEngine.UI.Text>();
-		ans3Txt = GameObject.Find("TextAns3").GetComponent<UnityEngine.UI.Text>();
+		ans3Txt = GameObject.Find("TextAns3").GetComponent<UnityEngine.UI.Text>();*/
 
 		//Inicializar los botones
 		ans1Btn = GameObject.Find("Answer1").GetComponent<UnityEngine.UI.Button>();
@@ -71,7 +79,7 @@ public class Nivel0 : MonoBehaviour {
 				Debug.Log("GAME OVER");
 
 			}
-			//respuestasRandom();
+			respuestasRandom();
 			generarNaves();
 			ganaste.enabled = false;
 			
@@ -94,7 +102,7 @@ public class Nivel0 : MonoBehaviour {
 	void numerosRandom(){
 
 		int numPas, numActual;
-		numPas = 0 ;
+		numPas = 0 ;respuestaNino = ansTextArray[0].text;
 		//generar el arreglo de numero de naves de forma aleatoria
 		/*for(j=0;j<numeroDeJuegos;j++){
 			numActual = Random.Range(1,10);
@@ -119,18 +127,27 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuestasRandom(){
+		/*
 		respuestas = new string[numeroDeJuegos];
 		int num = 0;
 		for(j=0;j<numeroDeJuegos;j++){
 			num = numerosArray[j] - 1; 
 			respuestas[j]= num + "";
+
 			//Debug.Log("la respuesta es: " + num);
 		}
 		//Poner las opciones en los botones
 		ans1Txt.text= respuestas[2] ;
 		ans2Txt.text= respuestas[0] ;
 		ans3Txt.text= respuestas[1] ;
-
+		*/
+		for(j=0;j<3;j++){
+			ansTextArray[j].text = Random.Range(1,10)  + "";
+		}
+		j = Random.Range(0,2);
+		int num = numerosArray[juegoActual] - 1;
+		ansTextArray[j].text = num + "";
+		
 	}
 
 	void generarNaves(){
@@ -155,7 +172,9 @@ public class Nivel0 : MonoBehaviour {
 	
 
 	void respuesta1(){
-		if(ans1Txt.text == respuestas[juegoActual]){
+		respuestaNino = ansTextArray[0].text;
+		Debug.Log(respuestaNino);
+		if(ansTextArray[0].text == (numNavesEnJuegoActual-1) + ""){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}
@@ -163,7 +182,9 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuesta2(){
-		if(ans2Txt.text == respuestas[juegoActual]){
+		respuestaNino = ansTextArray[1].text;
+		Debug.Log(respuestaNino);
+		if(ansTextArray[1].text == (numNavesEnJuegoActual-1) + ""){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}
@@ -171,7 +192,9 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuesta3(){
-		if(ans3Txt.text == respuestas[juegoActual]){
+		respuestaNino = ansTextArray[2].text;
+		Debug.Log(numNavesEnJuegoActual + "");
+		if(ansTextArray[2].text == (numNavesEnJuegoActual -1) +  ""){
 			ganaste.enabled = true;
 			desactivarPatron();
 		}

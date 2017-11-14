@@ -1,6 +1,2 @@
 Base path: /opt/Unity/Editor/Data
 Cmd: getPlatforms
-Cmd: preprocess
-  insize=1719 outsize=983 ok=1
-Cmd: preprocess
-  insize=19103 outsize=2823 ok=1
