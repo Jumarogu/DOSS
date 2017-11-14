@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var loginHandler = require('./routes/login');
 var studentsRoutes = require('./routes/student');
 var teacherRoutes = require('./routes/teachers');
+var gamesRoutes = require('./routes/games');
 
 
 var app = express();
@@ -32,7 +33,7 @@ router.post('/api/alumno', studentsRoutes.registerStudent);
 // PARENTS
 
 // GAMES
-
+router.post('/api/juega', gamesRoutes.registerGame);
 
 app.use('/', router);
 
