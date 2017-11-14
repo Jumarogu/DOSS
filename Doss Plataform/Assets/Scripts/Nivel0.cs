@@ -71,7 +71,7 @@ public class Nivel0 : MonoBehaviour {
 				Debug.Log("GAME OVER");
 
 			}
-			respuestasRandom();
+			//respuestasRandom();
 			generarNaves();
 			ganaste.enabled = false;
 			
@@ -85,7 +85,7 @@ public class Nivel0 : MonoBehaviour {
 				patron.enabled = false;
 			}
 			
-		for(j=0; j<numerosArray[juegoActual] -1 ; j++){
+		for(j=0; j<numerosArray[juegoActual] - 1; j++){
 				salida = ships[j].GetComponent<SalirNaves>();
 				salida.enabled = true;
 		}
@@ -96,11 +96,22 @@ public class Nivel0 : MonoBehaviour {
 		int numPas, numActual;
 		numPas = 0 ;
 		//generar el arreglo de numero de naves de forma aleatoria
-		for(j=0;j<numeroDeJuegos;j++){
+		/*for(j=0;j<numeroDeJuegos;j++){
+			numActual = Random.Range(1,10);
+			if(numActual != numPas){
+				Debug.Log(numActual + "");
+				numerosArray[j]= numActual;
+			}
+			numPas = numActual;
+		}*/
+
+		while (j<numeroDeJuegos)
+		{
 			numActual = Random.Range(2,11);
 			if(numActual != numPas){
-				//Debug.Log(numActual + "");
-				numerosArray[j]= numActual;
+				numerosArray[j] = numActual;
+				Debug.Log("Numero de naves en el juego " + j + ": " + numActual);
+				j++;
 			}
 			numPas = numActual;
 		}
@@ -116,14 +127,14 @@ public class Nivel0 : MonoBehaviour {
 			//Debug.Log("la respuesta es: " + num);
 		}
 		//Poner las opciones en los botones
-		ans1Txt.text= respuestas[0];
-		ans2Txt.text= respuestas[1];
-		ans3Txt.text= respuestas[2];
+		ans1Txt.text= respuestas[2] ;
+		ans2Txt.text= respuestas[0] ;
+		ans3Txt.text= respuestas[1] ;
 
 	}
 
 	void generarNaves(){
-		numNavesEnJuegoActual = numerosArray[juegoActual] - 1;
+		numNavesEnJuegoActual = numerosArray[juegoActual] ;
 		//ubicar el generador en el borde de la pantalla		
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
 		ships = new GameObject [numerosArray[juegoActual]];
@@ -138,6 +149,7 @@ public class Nivel0 : MonoBehaviour {
 				j++;
 			
 		}
+		//Debug.Log(separacionNaves + "");
 	}
 
 	
