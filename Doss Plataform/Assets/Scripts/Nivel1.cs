@@ -6,7 +6,7 @@ public class Nivel1 : MonoBehaviour {
 
 	private float height,width,separacionNaves,i, posInicial;
 	private Camera cam; 
-	private Text ganaste, textoNumero;
+	private Text ganaste, textoNumero, textoRespuesta;
 	private string [] numeros = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"}; 
 	private string respuesta; 
 	private int numeroDeJuegos , j, juegoActual, respuestaActual, letraActual;
@@ -32,11 +32,13 @@ public class Nivel1 : MonoBehaviour {
 		
 		//Buscar los elementos en la escena 
 		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
+		textoRespuesta = GameObject.Find("Respuesta").GetComponent<UnityEngine.UI.Text>();
 		respuestaInField = GameObject.Find("InputField").GetComponent<UnityEngine.UI.InputField>();
 
 		//Settear el numero de juegos
 		numeroDeJuegos = 3;
 		juegoActual = 0;
+		textoRespuesta.text = "";
 
 		respuestaInField.onValueChange.AddListener(delegate {leerRespuesta();});
 
@@ -91,7 +93,8 @@ public class Nivel1 : MonoBehaviour {
 	void leerRespuesta(){
 		string ans = respuestaInField.text;
 		if(ans[letraActual] == respuesta[letraActual]){
-			Debug.Log("Que pedo");
+			textoRespuesta.text = ans;
+			letraActual++;
 		}
 		
 
