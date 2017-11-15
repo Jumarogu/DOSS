@@ -2,12 +2,12 @@
     <form (ngSubmit)='signup' #loginForm="ngForm">
         <div>
             <mat-form-field>
-                <input type='email' ngModel [(ngModel)]='user.email' matInput placeholder="email" required>
+                <input type='email' ngModel [(ngModel)]='user.email' name='email' matInput placeholder="email" required>
             </mat-form-field>
         </div>
         <div>
             <mat-form-field>
-                <input type='password' ngModel [(ngModel)]='user.password' matInput placeholder="password" required>
+                <input type='password' ngModel [(ngModel)]='user.password' name='password' matInput placeholder="password" required>
             </mat-form-field>
         </div>
         <div>

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { AMaterialModule } from './material/material.module';
 import { LayoutModule } from './layout/layout.module';
+import { SignUpModule } from './signup/signup.module';
+import { SignInModule } from './signin/signin.module'; 
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { LayoutModule } from './layout/layout.module';
     BrowserAnimationsModule,
     AMaterialModule,
     AppRouting,
-    LayoutModule
+    LayoutModule,
+    SignInModule,
+    SignUpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
