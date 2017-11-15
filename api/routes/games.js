@@ -7,7 +7,8 @@ var gameRes = {
     "timepo" : '',
     'respuesta' : '',
     'pregunta' : '',
-    'fecha' : ''
+    'fecha' : '',
+    'correcto' : ''
 };
 
 exports.getGames = function(req, res) {
@@ -35,22 +36,28 @@ exports.getStudentGameResults = function(req, res) {
 }
 
 exports.registerGame = function(req, res) {
-    this.gameRes.alumnoID = req.body.alumnoID;
-    this.gameRes.juegoID = req.body.juegoID;
-    this.gameRes.tiempo = parseInt(req.body.tiempo);
-    this.gameRes.respuesta = parseInt(req.body.respuesta);
-    this.gameRes.pregunta = req.body.pregunta;
-    this.gameRes.fecha = req.body.fecha;
 
-    var insertQuery = 'INSERT INTO juegaPartida (alumnoId, juegoId, tiempo, respuesta, pregunta, fecha) VALUES ( ?, ?, ?, ?, ?, ?);'
-    var data = [this.gameRes.alumnoID, this.gameRes.juegoID, this.gameRes.timepo, this.gameRes.respuesta, this.gameRes.pregunta, this.gameRes.fecha];
+    gameRes.alumnoID = req.body.alumnoId;
+    gameRes.juegoID = req.body.juegoId;
+    gameRes.tiempo = parseInt(req.body.tiempo);
+    gameRes.respuesta = parseInt(req.body.respuesta);
+    gameRes.pregunta = req.body.pregunta;
+    gameRes.fecha = req.body.fecha;
+    gameRes.correcto = parseInt(req.body.correcto);
 
+    var insertQuery = 'INSERT INTO juegaPartida (alumnoId, juegoId, tiempo, respuesta, pregunta, fecha, correcto) VALUES ( ?, ?, ?, ?, ?, ?, ?);'
+    var data = [gameRes.alumnoID, gameRes.juegoID, gameRes.tiempo, gameRes.respuesta, gameRes.pregunta, gameRes.fecha, gameRes.correcto];
+
+    console.log(data);
     insertQuery = mysql.format(insertQuery, data);
+    console.log(insertQuery);
 
     db.query(insertQuery, function(err, rows){
         if(err) {
+            console.log(err);
             res.json({"Error" : true, "Message" : "Error executing INSERT QUERY", 'error' : err});
         } else {
+            console.log(rows);
             res.status(200).json({'Error' : false, "Message" : 'Inserted game', 'SQL response' : rows});
         }
     });

@@ -23,8 +23,8 @@ router.post('/api/profesor', teacherRoutes.registerTeacher);
 // STUDENTS
 router.get('/api/alumno', studentsRoutes.getStudents);
 router.get('/api/alumno/:id', studentsRoutes.getStudent);
-router.get('/api/alumno/:nombres/:apellidos', studentsRoutes.getStudentByName);
-//router.get('api/alumno', studentsRoutes.getStudentByGroup);
+router.get('/api/alumno/:nombres/', studentsRoutes.getStudentByName);
+//router.get('api/alumno/', studentsRoutes.getStudentByGroup);
 router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 router.post('/api/alumno', studentsRoutes.registerStudent);
 
