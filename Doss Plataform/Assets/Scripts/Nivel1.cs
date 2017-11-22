@@ -10,7 +10,7 @@ public class Nivel1 : MonoBehaviour {
 	private Text ganaste, textoNumero, textoRespuesta;
 	private string [] numeros = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"}; 
 	private string respuesta; 
-	private int numeroDeJuegos , j, juegoActual, respuestaActual, letraActual;
+	private int numeroDeJuegos , j, juegoActual, respuestaActual, letraActual, errores;
 	private int [] numerosArray;
 	private InputField respuestaInField;
 
@@ -29,6 +29,7 @@ public class Nivel1 : MonoBehaviour {
 		numeroDeJuegos = 3;
 		juegoActual = 0;
 		textoRespuesta.text = "";
+		errores = 0;
 
 		respuestaInField.onValueChange.AddListener(delegate {leerRespuesta();});
 
@@ -76,6 +77,9 @@ public class Nivel1 : MonoBehaviour {
 			if(ans[letraActual] == respuesta[letraActual]){
 				textoRespuesta.text = ans;
 				letraActual++;
+			}else
+			{
+				errores ++;
 			}
 		}
 		
@@ -83,9 +87,15 @@ public class Nivel1 : MonoBehaviour {
 			StartCoroutine(Pausa());
 			juegoActual++;
 			textoRespuesta.text = "";
-			letraActual = 0;
-			
+			letraActual = 0;			
 			numerosRandom();
+		}
+		if(errores >2){
+			juegoActual++;
+			textoRespuesta.text = "";
+			letraActual = 0;			
+			numerosRandom();
+			
 		}
 		
 
