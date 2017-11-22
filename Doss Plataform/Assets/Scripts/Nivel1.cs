@@ -16,16 +16,9 @@ public class Nivel1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		/*cam = GameObject.Find("Main Camera").GetComponent<Camera>(); // Obtener la referencia a la camara
 		
-		//Calcular el tamaño de la pantalla 
-		height = 2f * cam.orthographicSize;
-		width = height * cam.aspect;
-		posInicial = width / 2; 
-
-		//ubicar el generador en el borde de la pantalla
-		gameObject.transform.position= new Vector3(-posInicial,1,0);
-		*/
+		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
+		ganaste.enabled = false;
 
 		//Buscar los elementos en la escena 
 		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
@@ -46,10 +39,6 @@ public class Nivel1 : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void numerosRandom(){
 		//Chechar si el juego se acabo
@@ -91,13 +80,22 @@ public class Nivel1 : MonoBehaviour {
 		}
 		
 		if(ans == respuesta){
+			StartCoroutine(Pausa());
 			juegoActual++;
 			textoRespuesta.text = "";
 			letraActual = 0;
+			
 			numerosRandom();
 		}
 		
 
+	}
+
+	IEnumerator Pausa(){
+		ganaste.enabled = true;  
+		yield return new WaitForSeconds(1);
+		ganaste.enabled = false;
+		  
 	}
 
 	
