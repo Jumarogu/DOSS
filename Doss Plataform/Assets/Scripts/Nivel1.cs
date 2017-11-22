@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Nivel1 : MonoBehaviour {
 
@@ -24,11 +25,6 @@ public class Nivel1 : MonoBehaviour {
 
 		//ubicar el generador en el borde de la pantalla
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
-
-	
-		//referencia al texto de ganar 
-		//ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
-		//ganaste.enabled = false;
 		
 		//Buscar los elementos en la escena 
 		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
@@ -47,7 +43,6 @@ public class Nivel1 : MonoBehaviour {
 
 		numerosRandom();
 	
-		//respuestasRandom();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +51,14 @@ public class Nivel1 : MonoBehaviour {
 	}
 
 	void numerosRandom(){
+		//Chechar si el juego se acabo
+		if(juegoActual > numeroDeJuegos){
+				SceneManager.LoadScene("planet");
+				Debug.Log("GAME OVER");
 
+		}
+
+		//generar los numeros random
 		int numPas, numActual;
 		numPas = 0 ;
 
@@ -72,39 +74,31 @@ public class Nivel1 : MonoBehaviour {
 		respuestaActual = numerosArray[juegoActual] ; 
 		textoNumero.text = respuestaActual + "";
 		respuesta = numeros[respuestaActual-1];
+		respuestaInField.text = "";
 		Debug.Log(respuesta);
 	}
 
-	/*void respuestasRandom(){
-		textoNumero.text = respuestaActual + "";
-		string palabra = numeros[respuestaActual-1];
-		int rand;
-		respuestaActual = 0;
-		for(j=0;j<3;j++){
-			rand = Random.Range(0,palabra.Length);
-			ansTextArray[j].text = palabra[rand].ToString(); 
-		}
-		j = Random.Range(1,3);
-		ansTextArray[j].text = palabra[letraActual].ToString();
-
-	}*/
-
-
 	void leerRespuesta(){
 		string ans = respuestaInField.text;
-		if(ans[letraActual] == respuesta[letraActual]){
-			textoRespuesta.text = ans;
-			letraActual++;
+		Debug.Log("numero de letra: " + letraActual);
+		Debug.Log("ans.Length: " + ans.Length);
+		if(ans.Length != 0){
+			if(ans[letraActual] == respuesta[letraActual]){
+				textoRespuesta.text = ans;
+				letraActual++;
+			}
+		}
+		
+		if(ans == respuesta){
+			Debug.Log("GANASTE");
+			juegoActual++;
+			textoRespuesta.text = "";
+			letraActual = 0;
+			numerosRandom();
 		}
 		
 
 	}
 
-	void respuesta2(){
-		
-	}
-
-	void respuesta3(){
-		
-	}	
+	
 }
