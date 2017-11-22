@@ -91,6 +91,7 @@ public class Nivel1 : MonoBehaviour {
 			numerosRandom();
 		}
 		if(errores >2){
+			errores = 0;
 			juegoActual++;
 			textoRespuesta.text = "";
 			letraActual = 0;			
