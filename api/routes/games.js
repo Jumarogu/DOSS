@@ -12,11 +12,31 @@ var gameRes = {
 };
 
 exports.getGames = function(req, res) {
-    
+    var query = "SELECT * FROM ??";
+    var table = ["juego"];
+    query = mysql.format(query,table);
+    console.log(query);
+    db.query(query,function(err,rows){
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+        } else {
+            res.status(200).json({"Error" : false, "Message" : "Success", "Juegos" : rows});
+        }
+    });
 }
 
 exports.getGame = function(req, res) {
-    
+    var query = "SELECT * FROM ?? WHERE ?? = ? ";
+    var table = ["juego", 'id', req.params.juegoId];
+    query = mysql.format(query,table);
+    console.log(query);
+    db.query(query,function(err,rows){
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+        } else if(rows.length > 0){
+            res.status(200).json({"Error" : false, "Message" : "Success", "Juego" : rows});
+        }
+    });
 }
 
 exports.getGameResults = function(req, res) {

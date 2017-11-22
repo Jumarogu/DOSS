@@ -30,9 +30,17 @@ router.post('/api/alumno', studentsRoutes.registerStudent);
 
 // TEACHERS
 
+
 // PARENTS
 
+
 // GAMES
+router.get('/api/juego', gamesRoutes.getGames);
+router.get('/api/juego/:id', gamesRoutes.getGame);
+router.get('/api/jugado/:alumnoId', gamesRoutes.getStudentResults);
+router.get('/api/jugado/:grupoId', gamesRoutes.getGroupResults);
+router.get('/api/jugado/:alumnoId&juegoId', gamesRoutes.getStudentGameResults);
+
 router.post('/api/juega', gamesRoutes.registerGame);
 
 app.use('/', router);
