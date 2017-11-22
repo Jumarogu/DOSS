@@ -16,7 +16,7 @@ public class Nivel1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		cam = GameObject.Find("Main Camera").GetComponent<Camera>(); // Obtener la referencia a la camara
+		/*cam = GameObject.Find("Main Camera").GetComponent<Camera>(); // Obtener la referencia a la camara
 		
 		//Calcular el tamaño de la pantalla 
 		height = 2f * cam.orthographicSize;
@@ -25,7 +25,8 @@ public class Nivel1 : MonoBehaviour {
 
 		//ubicar el generador en el borde de la pantalla
 		gameObject.transform.position= new Vector3(-posInicial,1,0);
-		
+		*/
+
 		//Buscar los elementos en la escena 
 		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
 		textoRespuesta = GameObject.Find("Respuesta").GetComponent<UnityEngine.UI.Text>();
@@ -52,7 +53,7 @@ public class Nivel1 : MonoBehaviour {
 
 	void numerosRandom(){
 		//Chechar si el juego se acabo
-		if(juegoActual > numeroDeJuegos){
+		if(juegoActual >= numeroDeJuegos){
 				SceneManager.LoadScene("planet");
 				Debug.Log("GAME OVER");
 
@@ -80,8 +81,8 @@ public class Nivel1 : MonoBehaviour {
 
 	void leerRespuesta(){
 		string ans = respuestaInField.text;
-		Debug.Log("numero de letra: " + letraActual);
-		Debug.Log("ans.Length: " + ans.Length);
+		//Debug.Log("numero de letra: " + letraActual);
+		//Debug.Log("ans.Length: " + ans.Length);
 		if(ans.Length != 0){
 			if(ans[letraActual] == respuesta[letraActual]){
 				textoRespuesta.text = ans;
@@ -90,7 +91,6 @@ public class Nivel1 : MonoBehaviour {
 		}
 		
 		if(ans == respuesta){
-			Debug.Log("GANASTE");
 			juegoActual++;
 			textoRespuesta.text = "";
 			letraActual = 0;
