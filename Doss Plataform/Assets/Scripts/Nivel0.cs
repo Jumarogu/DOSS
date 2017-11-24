@@ -41,7 +41,7 @@ public class Nivel0 : MonoBehaviour {
 		ansTextArray = new Text [3];
 		for(int k = 0 ;k<3;k++){
 			string txt = "TextAns"+k;
-			Debug.Log(txt);
+			//Debug.Log(txt);
 			ansTextArray[k] = GameObject.Find(txt).GetComponent<UnityEngine.UI.Text>();
 		}
 		

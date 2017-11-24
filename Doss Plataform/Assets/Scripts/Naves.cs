@@ -9,7 +9,7 @@ public class Naves : MonoBehaviour {
  	void Start () 
 	 {
      	_startPosition = transform.position;
-		 speed = 2.4f;
+		 speed = 2f;
 	 }
  
 	 void Update()
