@@ -1,18 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.dark-primary-color    { background: #0097A7; }
-.default-primary-color { background: #00BCD4; }
+.dark-primary-color    { background: rgba(0, 89, 191, 0.9); }
+.default-primary-color { background: #0055BF; }
 .light-primary-color   { background: #B2EBF2; }
 .text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #E040FB; }
+.accent-color          { background: #0055BF; }
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #757575; }
 .divider-color         { border-color: #BDBDBD; }
 .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
-    background-color: #E040FB;;
+    background-color: #0055BF;;
   }
   
   .mat-ripple-element {
-    background: rgba(224, 64, 251, .3) !important;
+    background: rgba(0, 113, 255, .5) !important;
   }
+  .mat-slide-toggle {
+    color: #0066E5 !important;
+  } 
+
+
+  

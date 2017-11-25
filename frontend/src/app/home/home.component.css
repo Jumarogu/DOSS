@@ -1,0 +1,91 @@
+#graficas{
+    max-width: 85%;
+    min-width: 85%;
+    max-height: 75%;
+    min-height: 75%;
+    margin-top: 0px;
+    margin-top: 10px;
+    text-align: center;
+    padding-top: -10%;
+
+ 
+   
+}
+#avisos{
+    max-width: 70%;
+    min-width: 70%;
+    max-height: 60%;
+    min-height: 60%;
+    text-align: center;
+    margin-top: 20px;
+ 
+   
+}
+#datosUsuario{
+    width:65%;
+    height:83%;
+    min-height: 83%;
+    text-align:CENTER;
+    margin-top: 27px;
+
+}
+#datosUsuario mat-card-image{
+    width:15%;
+    height:auto;
+    text-align:CENTER;
+}
+#datosAlumno{
+    width:80%;
+    height:70%;
+    text-align:CENTER;
+    border-radius: 8px;
+}
+mat-card{
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+mat-form-field{ 
+    width: 61%;
+}
+
+
+.botonNav{
+    margin-top: 10px;
+    align-content: center;
+    margin-left:93%;
+    height: 50px;
+    width: 50px; 
+    background: rgb(255, 255, 255);
+    z-index: 1000;
+}
+.botonNav:hover{
+    background: rgb(170, 206, 248);
+}
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color:rgba(255, 255, 255, 0.109);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+ 
+  }
+  
+  .example-sidenav {
+    margin: 0;
+    width: 15%;
+    height: 100%;
+    background-color:rgba(255, 255, 255, 0.87);
+  }
+  button {
+    width: 50%;
+    margin-top: 10px;
+    color:rgb(255, 255, 255);
+    background:#0055BF;
+
+}

@@ -4,7 +4,8 @@ mat-card{
     text-align: center;
     margin-right: auto; 
     margin-left: auto;
-    margin-top: 5%;  
+    margin-top: 5%; 
+    border-radius:8px;  
 }
 mat-form-field{ 
     width: 61%;
@@ -12,6 +13,7 @@ mat-form-field{
 button {
     width: 200px;
     margin-top: 10px;
-    background:rgb(230, 120, 250);
+    background:#0055BF;
+    border-radius: 5px;
 
 }

@@ -1,0 +1,85 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav class="example-sidenav">
+        <mat-grid-list cols="1" rowHeight="2:1">
+            <div style="margin-top:30px;">
+                <mat-grid-tile>
+                    <img style="min-width:50%;" src="https://image.flaticon.com/icons/svg/194/194936.svg">
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <h2>Bienvenido</h2>
+                </mat-grid-tile>
+                <mat-grid-tile style="text-align:center;">
+                    <h3>Lorem itsum lorem itsum lorem itsum lorem itsum</h3>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <h3>Bienvenido</h3>
+                </mat-grid-tile>
+                <mat-grid-tile >
+                        <button mat-button style="border-radius: 5px;text-align:left;font-size:16px;">Ayuda<mat-icon style="padding-left:10px;"> help outline</mat-icon></button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                        <button mat-button style="width:80%;border-radius: 5px;text-align:left;font-size:16px;">Cerrar Sesion<mat-icon style="padding-left:10px;">reply</mat-icon></button>
+                </mat-grid-tile>
+            </div>
+        </mat-grid-list>
+
+    </mat-sidenav>
+
+    <div class="example-sidenav-content">
+
+        <button mat-fab class="botonNav" type="button" mat-button (click)="sidenav.open()">
+            <mat-icon style="color:#0055BF" aria-label="Menu">menu</mat-icon>
+        </button>
+    </div>
+
+    <mat-grid-list cols="4" rowHeight="1:1" style="margin-top:-49px;">
+        <mat-grid-tile colspan="1" rowspan="2">
+            <mat-card id="datosUsuario">
+                <mat-card-title>DATOS DE MAESTRO</mat-card-title>
+                <img mat-card-avatar id="datosUsuario" src="https://image.flaticon.com/icons/svg/194/194936.svg">
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="avisos">
+                <mat-card-title>TEMAS DIFICILES</mat-card-title>
+                <baseChart></baseChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="avisos">
+                <mat-card-title>TEMAS INTERMEDIOS</mat-card-title>
+                <dnutChart></dnutChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="avisos">
+                <mat-card-title>TEMAS FACILES</mat-card-title>
+                <dnutChart></dnutChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="graficas">
+                <mat-card-title>DESEMPEÑO GRUPAL</mat-card-title>
+                <dnutChart></dnutChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="graficas">
+                <mat-card-title>COMPARATIVO</mat-card-title>
+                <baseChart></baseChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="graficas">
+                <mat-card-title>TIEMPO</mat-card-title>
+                <dnutChart></dnutChart>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+              
+                  
+                    <table style="width:70%;max-height:85%;background-color:rgba(255, 255, 255, 0.85);min-height:85%;border-radius: 8px;"></table>
+            
+            </mat-grid-tile>
+    </mat-grid-list>
+</mat-sidenav-container>
