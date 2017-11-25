@@ -6,7 +6,6 @@ const LAYOUT_ROUTES: Routes = [
         {path: '', redirectTo: 'signup', pathMatch: 'full'},
         { path: 'signup', loadChildren: '../signup/signup.module#SignUpModule' },
         { path: 'signin', loadChildren: '../signin/signin.module#SignInModule' }
-
         //{ path: 'padres', loadChildren: '../padres/padres.module#PadresModule' },
         //{ path: 'profesors', loadChildren: '../profesors/profesors.module#ProfesorsModule'}
     ]}

@@ -11,26 +11,27 @@
             </div>
             <div>
                 <mat-form-field>
-                    <input type='email' ngModel [(ngModel)]='user.email' name='email' matInput placeholder="apellidos" required>
+                    <input type='email' ngModel [(ngModel)]='user.lastname' name='lastname' matInput placeholder="apellidos" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='email' ngModel [(ngModel)]='user.email' name='email' matInput placeholder="email" required>
+                    <input type='email' #email ngModel [(ngModel)]='user.email' name='email' matInput placeholder="email" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='password' ngModel [(ngModel)]='user.password' name='password' matInput placeholder="password" required>
+                    <input type='password' #password ngModel [(ngModel)]='user.password' name='password' matInput placeholder="password" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='password' ngModel [(ngModel)]='user.password' name='password' matInput placeholder="confirmar password" required>
+                    <input type='password' ngModel [(ngModel)]='user.confirmationpassword' name='confirmpassword' matInput placeholder="confirmar password" required>
                 </mat-form-field>
             </div>
             <div>
-                <button mat-raised-button class="default-primary-color"><p class="text-primary-color">Registro</p></button>
+                <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color"><p class="text-primary-color">Registro</p></button>
+                <button mat-raised-button (click)='auth.logout()' class="default-primary-color"><p class="text-primary-color">logout</p></button>
             </div>
         </form>
     </mat-card>
