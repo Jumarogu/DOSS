@@ -5,6 +5,11 @@ import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { AMaterialModule } from './material/material.module';
 import { LayoutModule } from './layout/layout.module';
+import { SignUpModule } from './signup/signup.module';
+import { SignInModule } from './signin/signin.module'; 
+import {HttpClientModule} from '@angular/common/http';
+import { DataService } from './services/data.service';
+import { AuthService } from './services/auth/auth.service';
 
 
 @NgModule({
@@ -16,9 +21,15 @@ import { LayoutModule } from './layout/layout.module';
     BrowserAnimationsModule,
     AMaterialModule,
     AppRouting,
-    LayoutModule
+    LayoutModule,
+    SignInModule,
+    SignUpModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ 
+    DataService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
