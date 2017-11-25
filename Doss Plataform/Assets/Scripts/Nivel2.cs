@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Nivel2 : MonoBehaviour {
 
-	private Text ganaste, numPlaneta; 
+	private Text ganaste, numPlaneta, erroresTxt; 
 	private UnityEngine.UI.Text[] ansTextArray;
 	private Button ansBtn1,ansBtn2,ansBtn3;
-	private int numeroDeJuegos,juegoActual,i, contador,navesQueCruzaron,respuestaJuegoActual;
+	private int numeroDeJuegos,juegoActual,i,navesQueCruzaron,respuestaJuegoActual,respuestaNino,errores;
 	private int [] navesEnPlaneta;
 	private float timer;
 	private Vector3 posGenerarNav;
@@ -21,7 +22,7 @@ public class Nivel2 : MonoBehaviour {
 		ganaste.enabled = false;
 		numeroDeJuegos = 3;
 		juegoActual = 0;
-		contador=0;
+		errores = 3;
 		posGenerarNav = new Vector3(transform.position.x + 2f,transform.position.y,transform.position.z);
 
 		//Hacer las referencias al Text del botón de respuestas
@@ -31,6 +32,9 @@ public class Nivel2 : MonoBehaviour {
 			ansTextArray[i] =  GameObject.Find(txt).GetComponent<UnityEngine.UI.Text>();
 		}
 		numPlaneta = GameObject.Find("navesEnPlaneta").GetComponent<UnityEngine.UI.Text>();
+		//Settear las oportunidades
+		erroresTxt = GameObject.Find("Errores").GetComponent<UnityEngine.UI.Text>();
+		erroresTxt.text = "Vidas: " + errores;
 
 		//Hacer las referencias a los botones de respuesta 
 		ansBtn1 = GameObject.Find("Answer1").GetComponent<UnityEngine.UI.Button>();
@@ -48,20 +52,16 @@ public class Nivel2 : MonoBehaviour {
 		respuestasRandom();
 		
 	}
+
 	
-	// Update is called once per frame
-	void Update () {
-
-		
-	}
-
 	void numerosRandom(){
+		
 		int numPas , numActual;
 		numPas = 0;
 		i = 0;
 		while (i<numeroDeJuegos)
 		{
-			numActual = Random.Range(1,20);
+			numActual = Random.Range(1,10);
 			if(numActual != numPas){
 				navesEnPlaneta[i] =  numActual;
 				i++;
@@ -70,44 +70,86 @@ public class Nivel2 : MonoBehaviour {
 			
 		}
 		//Poner el numero en el text del planeta 
-		numPlaneta.text = navesEnPlaneta[juegoActual] + "";
+		numPlaneta.text = navesEnPlaneta[juegoActual] + " naves";
 	}
 	
 
-	void generarNave(){
-		Instantiate(nave,posGenerarNav,Quaternion.Euler(0,90,-90));
-		Debug.Log("genere la nave " + contador);
-		contador++;
-	}
-
 	void respuestasRandom(){
 		respuestaJuegoActual = navesQueCruzaron + navesEnPlaneta[juegoActual];
-		for(i=0;i<3;i++){
-			ansTextArray[i].text = Random.Range(1,30)  + "";
+		Debug.Log("la respuesta es " + respuestaJuegoActual );
+		for(int j=0;j<3;j++){
+			ansTextArray[j].text = Random.Range(navesEnPlaneta[juegoActual],15)  + "";
 		}
-		i = Random.Range(0,2);
-		ansTextArray[i].text = respuestaJuegoActual + "";
+		int num = Random.Range(0,2);
+		ansTextArray[num].text = respuestaJuegoActual + "";
 	}
 
 	
 	IEnumerator corrutinaNaves(){
-		navesQueCruzaron = Random.Range(1,10);
+		ganaste.enabled=false;
+		navesQueCruzaron = Random.Range(1,5);
 		Debug.Log("Van a pasar " + navesQueCruzaron +" naves");
 		for(i=0;i<navesQueCruzaron;i++){
-			generarNave();
-			yield return new WaitForSeconds(3f);
+			Instantiate(nave,posGenerarNav,Quaternion.Euler(0,90,-90));
+			Debug.Log("Genere la nave num " + i);
+			yield return new WaitForSeconds(2f);
 		}
 		
+	}
+	void terminarJuego(){
+		numerosRandom();
+		StartCoroutine(corrutinaNaves());
+		respuestasRandom();
+		errores = 3;
+		erroresTxt.text = "Vidas: " + errores;
+		juegoActual ++;
+		if(juegoActual == numeroDeJuegos){
+			SceneManager.LoadScene("planet");
+		}
 	}
 
 	//Listeners para los botones
 	void listenerBtn1(){
-
+		if(errores < 1){
+			terminarJuego();
+		}
+		string nino = ansTextArray[0].text ;
+		respuestaNino = int.Parse(nino);
+		if(ansTextArray[0].text == (respuestaJuegoActual + "") ){
+			ganaste.enabled=true;
+			terminarJuego();
+		}else{
+			errores --;
+			erroresTxt.text = "Vidas: " + errores;
+		}
 	}
 	void listenerBtn2(){
-
+		if(errores < 1){
+			terminarJuego();
+		}
+		string nino = ansTextArray[0].text ;
+		respuestaNino = int.Parse(nino);
+		if(ansTextArray[1].text == (respuestaJuegoActual + "") ){
+			ganaste.enabled=true;
+			terminarJuego();
+		}else{
+			errores --;
+			erroresTxt.text = "Vidas: " + errores;
+		}
 	}
 	void listenerBtn3(){
-
+		if(errores< 1){
+			terminarJuego();
+		}
+		string nino = ansTextArray[0].text ;
+		respuestaNino = int.Parse(nino);
+		if(ansTextArray[2].text == (respuestaJuegoActual + "") ){
+			ganaste.enabled=true;
+			terminarJuego();
+		}else
+		{
+			errores --;
+			erroresTxt.text = "Vidas: " + errores;
+		}
 	}
 }

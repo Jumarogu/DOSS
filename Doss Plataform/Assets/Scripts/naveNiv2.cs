@@ -8,7 +8,7 @@ public class naveNiv2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		 speed = 1.5f;
+		 speed = 2f;
 	}
 	
 	// Update is called once per frame
