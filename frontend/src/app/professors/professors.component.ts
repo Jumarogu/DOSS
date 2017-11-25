@@ -5,16 +5,18 @@ import { AuthService } from '../services/auth/auth.service';
 
 @Component({
     
-    styleUrls: ['signin.component.css'],
-    templateUrl: 'signin.component.html'
+    styleUrls: ['professors.component.css'],
+    templateUrl: 'professors.component.html'
 })
 
-export class SignInComponent {
-    user: any;
+
+export class ProfessorsComponent {
+
+    
     constructor(private router: Router, private dataService: DataService, private auth: AuthService) {
-        this.user = {};
-        this.user.email = "";
-        this.user.password = "";
+        this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+            console.log(data);
+        })
     }
 
 }

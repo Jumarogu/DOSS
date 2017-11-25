@@ -3,7 +3,13 @@ import { MatToolbarModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatIconModule } from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTableModule} from '@angular/material/table';
+
 
 @NgModule({
     imports: [
@@ -11,15 +17,24 @@ import {MatButtonModule} from '@angular/material';
         MatToolbarModule,
         MatIconModule,
         MatInputModule,
-        MatButtonModule
-
+        MatCheckboxModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        MatGridListModule,
+        MatSidenavModule,
+        MatTableModule,
     ],
     exports: [
         MatCardModule,
         MatToolbarModule,
         MatIconModule,
         MatInputModule,
-        MatButtonModule
+        MatCheckboxModule,
+        MatButtonModule,
+        MatSlideToggleModule,
+        MatGridListModule,
+        MatSidenavModule,
+        MatTableModule,
     ]
 })
 export class AMaterialModule { }

@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { AMaterialModule } from '../material/material.module';
 import { SignInComponent } from './signin.component';
+import { DataService } from '../services/data.service';
+import { AuthService } from '../services/auth/auth.service';
 
 const routes: Routes = [
     {path: 'signin', component: SignInComponent}
@@ -22,7 +24,10 @@ const routes: Routes = [
         AMaterialModule,
         RouterModule.forChild(routes)
     ],
-    providers: []
+    providers: [
+        DataService,
+        AuthService
+    ]
 })
 
 export class SignInModule { }

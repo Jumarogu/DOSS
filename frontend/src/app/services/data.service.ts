@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class DataService {
@@ -23,10 +24,14 @@ export class DataService {
         return this.http.get( this.apiURL + '/juegos' );
     }
 
-    getUser (email: string) : Observable<any> {
+    getUserRol (email: string) : Observable<any> {
         const body = {
             email: email
         };
         return this.http.post( this.apiURL + '/login', body);
+    }
+    getUser(email: string) : Observable<any> {
+        let params = new HttpParams().set("email", email);
+        return this.http.get( this.apiURL + '/profesor', {params: params});
     }
 }

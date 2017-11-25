@@ -7,6 +7,7 @@ import { NavComponent } from './nav/nav.component';
 import { LayoutComponent } from "./layout.component";
 import { SignInModule } from '../signin/signin.module';
 import { SignUpModule } from '../signup/signup.module';
+import { ProfessorsModule } from '../professors/professors.module';
 
 @NgModule ({
     declarations: [
@@ -23,7 +24,8 @@ import { SignUpModule } from '../signup/signup.module';
         SignInModule,
         SignUpModule,
         FormsModule,
-        AMaterialModule
+        AMaterialModule,
+        ProfessorsModule,
     ],
     providers: []
 })

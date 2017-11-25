@@ -40,7 +40,7 @@ export class AuthService {
             } else if (authResult && authResult.accessToken && authResult.idToken) {
                 console.log(authResult);
                 this.setSession(authResult);
-                this.dataService.getUser(username).subscribe(data => {
+                this.dataService.getUserRol(username).subscribe(data => {
                     this.currentUser = data;
                     this.router.navigate(['/' + this.currentUser.rol]);
                 });
