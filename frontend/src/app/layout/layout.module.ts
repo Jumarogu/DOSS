@@ -6,7 +6,7 @@ import { AMaterialModule } from '../material/material.module';
 import { NavComponent } from './nav/nav.component';
 import { LayoutComponent } from "./layout.component";
 import { SignInModule } from '../signin/signin.module';
-import { HomeModule } from '../home/home.module';
+import { ProfessorsModule } from '../professors/professors.module';
 
 @NgModule ({
     declarations: [
@@ -23,7 +23,7 @@ import { HomeModule } from '../home/home.module';
         SignInModule,
         FormsModule,
         AMaterialModule,
-        HomeModule,
+        ProfessorsModule,
     ],
     providers: []
 })

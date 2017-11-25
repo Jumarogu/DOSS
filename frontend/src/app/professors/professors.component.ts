@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 
 @Component({
     
-    styleUrls: ['home.component.css'],
-    templateUrl: 'home.component.html'
+    styleUrls: ['professors.component.css'],
+    templateUrl: 'professors.component.html'
 })
 
 
-export class HomeComponent {
+export class ProfessorsComponent {
 
     
     constructor(private router: Router) {
