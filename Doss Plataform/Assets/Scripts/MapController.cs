@@ -16,6 +16,7 @@ public class MapController : MonoBehaviour
     private Image mascota;
     public Button jugar,regresar;
     private Vector3 [] cameraPosition;
+    public GameObject [] candados;
     
     void Start(){
         planetPanel = GameObject.Find("PlanetInfo");        
