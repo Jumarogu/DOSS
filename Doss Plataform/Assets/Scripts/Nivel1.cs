@@ -7,7 +7,7 @@ public class Nivel1 : MonoBehaviour {
 
 	private float height,width,separacionNaves,i, posInicial;
 	private Camera cam; 
-	private Text ganaste, textoNumero, textoRespuesta;
+	private Text ganaste, textoNumero, textoRespuesta, erroresTxt;
 	private string [] numeros = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"}; 
 	private string respuesta; 
 	private int numeroDeJuegos , j, juegoActual, respuestaActual, letraActual, errores;
@@ -23,13 +23,15 @@ public class Nivel1 : MonoBehaviour {
 		//Buscar los elementos en la escena 
 		textoNumero = GameObject.Find("Numero").GetComponent<UnityEngine.UI.Text>();
 		textoRespuesta = GameObject.Find("Respuesta").GetComponent<UnityEngine.UI.Text>();
+		erroresTxt = GameObject.Find("Errores").GetComponent<UnityEngine.UI.Text>();
 		respuestaInField = GameObject.Find("InputField").GetComponent<UnityEngine.UI.InputField>();
 
 		//Settear el numero de juegos
 		numeroDeJuegos = 3;
 		juegoActual = 0;
 		textoRespuesta.text = "";
-		errores = 0;
+		errores = 3;
+		erroresTxt.text = "Vidas: " + errores;
 
 		respuestaInField.onValueChange.AddListener(delegate {leerRespuesta();});
 
@@ -79,21 +81,25 @@ public class Nivel1 : MonoBehaviour {
 				letraActual++;
 			}else
 			{
-				errores ++;
+				errores --;
+				erroresTxt.text = "Vidas: " + errores;
 			}
 		}
 		
 		if(ans == respuesta){
 			StartCoroutine(Pausa());
+			errores = 3;
 			juegoActual++;
 			textoRespuesta.text = "";
+			erroresTxt.text = "Vidas: " + errores;
 			letraActual = 0;			
 			numerosRandom();
 		}
-		if(errores >2){
-			errores = 0;
+		if(errores <1){
+			errores = 3;
 			juegoActual++;
 			textoRespuesta.text = "";
+			erroresTxt.text = "Vidas: " + errores;
 			letraActual = 0;			
 			numerosRandom();
 			

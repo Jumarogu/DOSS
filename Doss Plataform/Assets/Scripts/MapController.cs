@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour
     public Sprite Lion;
     public Sprite Dolphin;
     private Image mascota;
-    public Button jugar;
+    public Button jugar,regresar;
     private Vector3 [] cameraPosition;
     
     void Start(){
@@ -25,7 +25,7 @@ public class MapController : MonoBehaviour
         playerName = GameObject.Find("NamePanel").GetComponentInChildren<UnityEngine.UI.Text>();
         planetPanel.SetActive(false);
         
-
+        regresar.onClick.AddListener(regresarCamara);
         jugar.onClick.AddListener(entrarJuego);
         
         cameraPosition = new Vector3 [12];
@@ -62,6 +62,11 @@ public class MapController : MonoBehaviour
     void entrarJuego(){
         //SceneManager.LoadScene("Nivel0");
         Debug.Log("Entre al juego ");
+    }
+
+    void regresarCamara(){
+        this.transform.position = cameraPosition[11];
+        planetPanel.SetActive(false);
     }
     // Update is called once per frame
     void Update()
