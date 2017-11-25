@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var loginHandler = require('./routes/login');
 var studentsRoutes = require('./routes/student');
@@ -11,12 +12,14 @@ var app = express();
 var port = process.env.PORT || 8080;
 var router = express.Router();
 
+app.use(cors());
+app.options('*', cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // LOGIN AND USER REGISTRATION
 router.post('/api/login-alumno', loginHandler.loginStudent);
-router.post('/api/login', loginHandler.loginUser);
+router.post('/api/login', loginHandler.getLoggedUser);
 
 router.post('/api/profesor', teacherRoutes.registerTeacher);
 
@@ -29,7 +32,7 @@ router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 router.post('/api/alumno', studentsRoutes.registerStudent);
 
 // TEACHERS
-
+router.get('/api/profesor/:email', teacherRoutes.getTeacher);
 
 // PARENTS
 

@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     //host: '192.168.1.77',
     user: 'jumarogu',
     password: 'rooster1881',
-    database: 'dossDB'
+    database: 'SPACEMATH'
 });
 
 connection.connect(function(err) {

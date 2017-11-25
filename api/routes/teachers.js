@@ -50,6 +50,26 @@ exports.updateTeacher = function(req, res) {
     
 }
 
+exports.getTeacher = function (req, res) {
+
+    var query = 'SELECT * FROM profesor WHERE EMAIL = ?';
+    var table = [req.params.email];
+    console.log('the actual fuck?' + req.params);
+    query = mysql.format(query, table);
+
+    db.query (query, function(err, rows) {
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
+        } else {
+            if(rows.length > 0) {
+                res.json(rows).status(200);
+            } else {
+                res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
+            }
+        }  
+    });
+}
+
 function randomID(min,max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 }
