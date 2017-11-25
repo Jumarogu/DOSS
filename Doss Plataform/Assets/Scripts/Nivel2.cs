@@ -86,7 +86,6 @@ public class Nivel2 : MonoBehaviour {
 
 	
 	IEnumerator corrutinaNaves(){
-		ganaste.enabled=false;
 		navesQueCruzaron = Random.Range(1,5);
 		Debug.Log("Van a pasar " + navesQueCruzaron +" naves");
 		for(i=0;i<navesQueCruzaron;i++){
@@ -116,7 +115,7 @@ public class Nivel2 : MonoBehaviour {
 		string nino = ansTextArray[0].text ;
 		respuestaNino = int.Parse(nino);
 		if(ansTextArray[0].text == (respuestaJuegoActual + "") ){
-			ganaste.enabled=true;
+			StartCoroutine(Pausa());
 			terminarJuego();
 		}else{
 			errores --;
@@ -130,7 +129,7 @@ public class Nivel2 : MonoBehaviour {
 		string nino = ansTextArray[0].text ;
 		respuestaNino = int.Parse(nino);
 		if(ansTextArray[1].text == (respuestaJuegoActual + "") ){
-			ganaste.enabled=true;
+			StartCoroutine(Pausa());
 			terminarJuego();
 		}else{
 			errores --;
@@ -144,12 +143,19 @@ public class Nivel2 : MonoBehaviour {
 		string nino = ansTextArray[0].text ;
 		respuestaNino = int.Parse(nino);
 		if(ansTextArray[2].text == (respuestaJuegoActual + "") ){
-			ganaste.enabled=true;
+			StartCoroutine(Pausa());
 			terminarJuego();
 		}else
 		{
 			errores --;
 			erroresTxt.text = "Vidas: " + errores;
 		}
+	}
+
+	IEnumerator Pausa(){
+		ganaste.enabled = true;  
+		yield return new WaitForSeconds(1);
+		ganaste.enabled = false;
+		  
 	}
 }
