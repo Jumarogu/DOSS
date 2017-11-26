@@ -84,96 +84,115 @@ public class MapController : MonoBehaviour
             {
                 planetPanel.SetActive(true);
                 planetName.text = "Numeros 1 - 10";
-                planetDescription.text = "Cuenta las naves y elige en numero correcto para ganar. ";
-                this.transform.position = cameraPosition[0];
-                
+                planetDescription.text = "Cuenta las naves y elige el numero correcto para ganar. ";
+                this.transform.position = cameraPosition[0];                
             }
 
             if (hit.transform.name == "Planeta1" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Numeracion con letra";
-                planetDescription.text = "Escribe en letra el numero.";
-                this.transform.position = cameraPosition[1];
+                if(!candados[0].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Numeracion con letra";
+                    planetDescription.text = "Escribe en letra el numero.";
+                    this.transform.position = cameraPosition[1];       
+                }
             }
 
             if (hit.transform.name == "Planeta2" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Sumitas";
-                planetDescription.text = "Ejercicios de sumas basicas.";
-                this.transform.position = cameraPosition[2];
+                if(!candados[1].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Sumitas";
+                    planetDescription.text = "Ejercicios de sumas basicas.";
+                    this.transform.position = cameraPosition[2];
+                }
             }
 
             if (hit.transform.name == "Planeta3" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Sumotas";
-                planetDescription.text = "Ejercicios de sumas un poco mas complicadas. ";
-                this.transform.position = cameraPosition[3];
+                if(!candados[2].active){
+                    planetPanel.SetActive(true);
+                     planetName.text = "Sumotas";
+                    planetDescription.text = "Ejercicios de sumas un poco mas complicadas. ";
+                    this.transform.position = cameraPosition[3];
+                }
             }
 
             if (hit.transform.name == "Planeta4" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Restitas";
-                planetDescription.text = "Ejercicios de restas sencillos.";
-                this.transform.position = cameraPosition[4];
+                if(!candados[3].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Restitas";
+                    planetDescription.text = "Ejercicios de restas sencillos.";
+                    this.transform.position = cameraPosition[4];
+                }
             }
 
             if (hit.transform.name == "Planeta5" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Restotas";
-                planetDescription.text = "Ejercicios de restas mas grandotas. ";
-                this.transform.position = cameraPosition[5];
+                if(!candados[4].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Restotas";
+                    planetDescription.text = "Ejercicios de restas mas grandotas. ";
+                    this.transform.position = cameraPosition[5];
+                }
             }
 
             if (hit.transform.name == "Planeta6" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Sumas Verticales";
-                planetDescription.text = "Cambio de sumas horizontales a verticales. ";
-                this.transform.position = cameraPosition[6];
+                if(!candados[5].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Sumas Verticales";
+                    planetDescription.text = "Cambio de sumas horizontales a verticales. ";
+                    this.transform.position = cameraPosition[6];
+                }
             }
 
             if (hit.transform.name == "Planeta7" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Restas Verticales ";
-                planetDescription.text = "Cambio de restas horizontales a verticales. ";
-                this.transform.position = cameraPosition[7];
+                if(!candados[6].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Restas Verticales ";
+                    planetDescription.text = "Cambio de restas horizontales a verticales. ";
+                    this.transform.position = cameraPosition[7];
+                }
             }
 
             if (hit.transform.name == "Planeta8" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Sumas y restas. ";
-                planetDescription.text = "Combinacion de sumas y restas";
-                this.transform.position = cameraPosition[8];
+                if(!candados[7].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Sumas y restas. ";
+                    planetDescription.text = "Combinacion de sumas y restas";
+                    this.transform.position = cameraPosition[8];
+                }
             }
 
             if (hit.transform.name == "Planeta9" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "No se ";
-                planetDescription.text = "";
-
+                if(!candados[8].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "No se ";
+                    planetDescription.text = "";
+                }
             }
 
             if (hit.transform.name == "Planeta10" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "Npi";
-                planetDescription.text = "";
-
+                if(!candados[9].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "Npi";
+                    planetDescription.text = "";
+                }
             }
 
             if (hit.transform.name == "Planeta11" && Input.GetMouseButtonDown(0))
             {
-                planetPanel.SetActive(true);
-                planetName.text = "I'm lost";
-                planetDescription.text = "";
+                if(!candados[10].active){
+                    planetPanel.SetActive(true);
+                    planetName.text = "I'm lost";
+                    planetDescription.text = "";
+                }
 
             }
             // Pendientes, desaparecer el menu                 
