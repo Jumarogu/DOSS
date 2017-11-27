@@ -2,5 +2,16 @@
     flex: 1 1 auto;
 }
 .button_spacer {
-  margin-left: 2px;
+  margin-left: 5px;
+}
+button {
+  width: 130px;
+  margin-top: 10px;
+  background:white;
+  border-radius: 5px;
+  color: #0055BF;
+  text-align: center;
+  font-family: 'Indie Flower';
+  font-size: 19px;
+
 }

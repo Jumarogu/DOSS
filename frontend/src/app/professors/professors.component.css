@@ -40,12 +40,20 @@
     text-align:CENTER;
     border-radius: 8px;
 }
+h3,h2{
+    color: gray;
+}
+
 mat-card{
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.85);
+    font-family: 'Indie Flower';
   }
 mat-form-field{ 
     width: 61%;
+}
+h1,h2,h3 {
+    font-family: 'Indie Flower';
 }
 
 
@@ -87,5 +95,6 @@ mat-form-field{
     margin-top: 10px;
     color:rgb(255, 255, 255);
     background:#0055BF;
+    font-family: 'Indie Flower';
 
 }

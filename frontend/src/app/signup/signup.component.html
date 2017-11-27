@@ -1,9 +1,9 @@
 <section>
     <mat-card>
         <form (ngSubmit)='signup' #loginForm="ngForm">
-            <div>
-                <h1 >Registro</h1>
-            </div>
+            <mat-card-title>
+                <h1>Registro</h1>
+            </mat-card-title>
             <div>
                 <mat-form-field>
                     <input type='text' ngModel [(ngModel)]='user.name' name='name' matInput placeholder="nombres" required>
@@ -30,8 +30,8 @@
                 </mat-form-field>
             </div>
             <div>
-                <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color"><p class="text-primary-color">Registro</p></button>
-                <button mat-raised-button (click)='auth.logout()' class="default-primary-color"><p class="text-primary-color">logout</p></button>
+                <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color">Registro</button>
+                <button mat-raised-button (click)='auth.logout()' class="default-primary-color">logout</button>
             </div>
         </form>
     </mat-card>

@@ -15,5 +15,10 @@ button {
     margin-top: 10px;
     background:#0055BF;
     border-radius: 5px;
+    font-family: 'Indie Flower';
+    font-size: 20px;
 
+}
+h1,h2,h3 {
+    font-family: 'Indie Flower';
 }

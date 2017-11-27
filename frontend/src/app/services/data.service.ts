@@ -31,7 +31,8 @@ export class DataService {
         return this.http.post( this.apiURL + '/login', body);
     }
     getUser(email: string) : Observable<any> {
-        let params = new HttpParams().set("email", email);
-        return this.http.get( this.apiURL + '/profesor', {params: params});
+        const body = {
+            email: email};
+        return this.http.post( this.apiURL + '/profesor/email', body);
     }
 }

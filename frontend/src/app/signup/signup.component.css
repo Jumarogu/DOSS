@@ -1,8 +1,23 @@
 mat-card{
     max-width: 40%;
     text-align: center;
-    margin-left:27%;    
+    margin-left:27%; 
+    border-radius:8px;  
+       
 }
 mat-form-field{
     width: 60%;
+}
+button {
+    width: 200px;
+    margin-top: 10px;
+    background:#0055BF;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Indie Flower';
+    font-size: 19px;
+    
+}
+h1,h2,h3 {
+    font-family: 'Indie Flower';
 }
