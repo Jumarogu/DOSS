@@ -113,13 +113,21 @@ public class Nivel0 : MonoBehaviour {
 	}
 
 	void respuestasRandom(){
-		
-		for(j=0;j<3;j++){
-			ansTextArray[j].text = Random.Range(1,10)  + "";
+		j = 0;
+		while(j<3){
+			int ran = Random.Range(1,10);
+			if(ran != numerosArray[juegoActual] -1){
+				ansTextArray[j].text = ran + "";
+				j++;
+			}else
+			{
+				ran = Random.Range(1,10);
+			}
 		}
+
 		j = Random.Range(0,2);
-		int num = numerosArray[juegoActual] - 1;
-		ansTextArray[j].text = num + "";
+		 
+		ansTextArray[j].text = (numerosArray[juegoActual] - 1)+ "";
 		
 	}
 

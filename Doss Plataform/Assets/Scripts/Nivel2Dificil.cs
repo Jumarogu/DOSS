@@ -77,11 +77,19 @@ public class Nivel2Dificil : MonoBehaviour {
 	void respuestasRandom(){
 		respuestaJuegoActual = navesQueCruzaron + navesEnPlaneta[juegoActual];
 		Debug.Log("la respuesta es " + respuestaJuegoActual );
-		for(int j=0;j<3;j++){
-			ansTextArray[j].text = Random.Range(navesEnPlaneta[juegoActual],15)  + "";
+		int j = 0 ; 
+		while(j<3){
+			int ran = Random.Range(navesEnPlaneta[juegoActual],15);
+			if(ran != respuestaJuegoActual){
+				ansTextArray[j].text = ran + "";
+				j++;
+			}else{
+				ran = Random.Range(navesEnPlaneta[juegoActual],15);
+			}
 		}
 		int num = Random.Range(0,2);
 		ansTextArray[num].text = respuestaJuegoActual + "";
+		
 	}
 
 	

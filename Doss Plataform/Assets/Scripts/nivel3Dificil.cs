@@ -3,21 +3,19 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Nivel2 : MonoBehaviour {
+public class nivel3Dificil : MonoBehaviour {
 
 	private Text ganaste, numPlaneta, erroresTxt; 
 	private UnityEngine.UI.Text[] ansTextArray;
 	private Button ansBtn1,ansBtn2,ansBtn3;
 	private int numeroDeJuegos,juegoActual,i,navesQueCruzaron,respuestaJuegoActual,respuestaNino,errores;
 	private int [] navesEnPlaneta;
+	private float timer;
 	private Vector3 posGenerarNav;
 	public GameObject nave;
-
-
-	
 	// Use this for initialization
 	void Start () {
-		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
+	ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
 		ganaste.enabled = false;
 		numeroDeJuegos = 3;
 		juegoActual = 0;
@@ -46,13 +44,12 @@ public class Nivel2 : MonoBehaviour {
 
 		//Inicializar el arreglo de numero de naves 
 		navesEnPlaneta = new int [numeroDeJuegos];
+
 		numerosRandom();
 		StartCoroutine(corrutinaNaves());
 		respuestasRandom();
-		
 	}
 
-	
 	void numerosRandom(){
 		
 		int numPas , numActual;
@@ -60,7 +57,7 @@ public class Nivel2 : MonoBehaviour {
 		i = 0;
 		while (i<numeroDeJuegos)
 		{
-			numActual = Random.Range(1,10);
+			numActual = Random.Range(10,15);
 			if(numActual != numPas){
 				navesEnPlaneta[i] =  numActual;
 				i++;
@@ -71,37 +68,37 @@ public class Nivel2 : MonoBehaviour {
 		//Poner el numero en el text del planeta 
 		numPlaneta.text = navesEnPlaneta[juegoActual] + " naves";
 	}
-	
 
-	void respuestasRandom(){
-		respuestaJuegoActual = navesQueCruzaron + navesEnPlaneta[juegoActual];
-		Debug.Log("la respuesta es " + respuestaJuegoActual );
-		int j = 0 ; 
-		while(j<3){
-			int ran = Random.Range(navesEnPlaneta[juegoActual],15);
-			if(ran != respuestaJuegoActual){
-				ansTextArray[j].text = ran + "";
-				j++;
-			}else{
-				ran = Random.Range(navesEnPlaneta[juegoActual],15);
-			}
-		}
-		int num = Random.Range(0,2);
-		ansTextArray[num].text = respuestaJuegoActual + "";
-		
-	}
-
-	
 	IEnumerator corrutinaNaves(){
-		navesQueCruzaron = Random.Range(1,5);
+		navesQueCruzaron = Random.Range(3,8);
 		Debug.Log("Van a pasar " + navesQueCruzaron +" naves");
 		for(i=0;i<navesQueCruzaron;i++){
 			Instantiate(nave,posGenerarNav,Quaternion.Euler(0,90,-90));
-			Debug.Log("Genere la nave num " + i);
+			//Debug.Log("Genere la nave num " + i);
 			yield return new WaitForSeconds(2f);
 		}
 		
 	}
+
+	void respuestasRandom(){
+		respuestaJuegoActual = navesEnPlaneta[juegoActual] - navesQueCruzaron;
+		Debug.Log("la respuesta es " + respuestaJuegoActual );
+		
+		int j = 0 ;
+		while(j<3){
+			int ran = Random.Range(0,navesEnPlaneta[juegoActual]);
+			if(ran != respuestaJuegoActual){
+				ansTextArray[j].text = ran +"";
+				j++;
+				Debug.Log("se agrego" + ran);
+			}else{
+				ran = Random.Range(0,navesEnPlaneta[juegoActual]);
+			}
+		}
+		int num = Random.Range(0,2);
+		ansTextArray[num].text = respuestaJuegoActual + "";
+	}
+
 	void terminarJuego(){
 		numerosRandom();
 		StartCoroutine(corrutinaNaves());
@@ -113,8 +110,7 @@ public class Nivel2 : MonoBehaviour {
 			SceneManager.LoadScene("planet");
 		}
 	}
-
-	//Listeners para los botones
+	
 	void listenerBtn1(){
 		if(errores < 1){
 			terminarJuego();
