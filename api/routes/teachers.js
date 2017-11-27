@@ -52,9 +52,9 @@ exports.updateTeacher = function(req, res) {
 
 exports.getTeacher = function (req, res) {
 
-    var query = 'SELECT * FROM profesor WHERE EMAIL = ?';
-    var table = [req.params.email];
-    console.log('the actual fuck?' + req.params);
+    var query = 'SELECT * FROM profesor WHERE CORREO = ?';
+    var table = [req.body.email];
+    console.log('the actual fuck?' + req.body);
     query = mysql.format(query, table);
 
     db.query (query, function(err, rows) {

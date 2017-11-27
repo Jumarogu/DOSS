@@ -32,7 +32,8 @@ router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 router.post('/api/alumno', studentsRoutes.registerStudent);
 
 // TEACHERS
-router.get('/api/profesor/:email', teacherRoutes.getTeacher);
+router.post('/api/profesor/email', teacherRoutes.getTeacher);
+
 
 // PARENTS
 
