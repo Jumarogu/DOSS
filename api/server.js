@@ -30,6 +30,7 @@ router.get('/api/alumno/:nombres/', studentsRoutes.getStudentByName);
 //router.get('api/alumno/', studentsRoutes.getStudentByGroup);
 router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 router.post('/api/alumno', studentsRoutes.registerStudent);
+router.get('/api/alumnos/lastgame/:group', studentsRoutes.getLastGame);
 
 // TEACHERS
 router.post('/api/profesor/email', teacherRoutes.getTeacher);
