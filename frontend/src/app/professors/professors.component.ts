@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth/auth.service';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     
@@ -10,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 
 
-export class ProfessorsComponent {
+export class ProfessorsComponent implements OnInit{
    nombre;
    apellido;
    grupo;

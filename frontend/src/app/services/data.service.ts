@@ -35,4 +35,7 @@ export class DataService {
             email: email};
         return this.http.post( this.apiURL + '/profesor/email', body);
     }
+    getAlumnosLastGame(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/alumnos/lastgame/' + grupo );
+    }
 }
