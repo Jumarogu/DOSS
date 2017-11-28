@@ -95,7 +95,7 @@ public class nivel4 : MonoBehaviour {
 	}
 
 	void respuestasRandom(){
-		respuestaJuegoActual = (navesEnPlaneta[juegoActual] + navesQueCruzaron ) - navesQueRegresaron ; 
+		respuestaJuegoActual = (navesEnPlaneta[juegoActual] - navesQueCruzaron ) + navesQueRegresaron ; 
 		Debug.Log("la respuesta es " + respuestaJuegoActual);
 		int j = 0;
 		while(j<3){

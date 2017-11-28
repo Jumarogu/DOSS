@@ -17,6 +17,7 @@ public class MapController : MonoBehaviour
     public Button jugar,regresar;
     private Vector3 [] cameraPosition;
     public GameObject [] candados;
+    private string selectedPlanetName;
     
     void Start(){
         planetPanel = GameObject.Find("PlanetInfo");        
@@ -61,8 +62,31 @@ public class MapController : MonoBehaviour
     }
 
     void entrarJuego(){
-        //SceneManager.LoadScene("Nivel0");
-        Debug.Log("Entre al juego ");
+        
+        switch (selectedPlanetName)
+        {
+            case ("Planeta0"):
+                SceneManager.LoadScene("Nivel0");
+                break;
+            case ("Planeta1"):
+                SceneManager.LoadScene("Nivel1");
+                break;
+            case ("Planeta2"):
+                SceneManager.LoadScene("Nivel2");
+                break;
+            case ("Planeta3"):
+                SceneManager.LoadScene("Nivel2Dificil");
+                break;
+            case ("Planeta4"):
+                SceneManager.LoadScene("Nivel3");
+                break;
+            case ("Planeta5"):
+                SceneManager.LoadScene("Nivel3Dificil");
+                break;
+            case ("Planeta6"):
+                SceneManager.LoadScene("Nivel4");
+                break;
+        }
     }
 
     void regresarCamara(){
@@ -85,7 +109,8 @@ public class MapController : MonoBehaviour
                 planetPanel.SetActive(true);
                 planetName.text = "Numeros 1 - 10";
                 planetDescription.text = "Cuenta las naves y elige el numero correcto para ganar. ";
-                this.transform.position = cameraPosition[0];                
+                this.transform.position = cameraPosition[0];  
+                this.selectedPlanetName = hit.transform.name;              
             }
 
             if (hit.transform.name == "Planeta1" && Input.GetMouseButtonDown(0))
@@ -94,7 +119,8 @@ public class MapController : MonoBehaviour
                     planetPanel.SetActive(true);
                     planetName.text = "Numeracion con letra";
                     planetDescription.text = "Escribe en letra el numero.";
-                    this.transform.position = cameraPosition[1];       
+                    this.transform.position = cameraPosition[1];    
+                    this.selectedPlanetName = hit.transform.name;   
                 }
             }
 
@@ -105,6 +131,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Sumitas";
                     planetDescription.text = "Ejercicios de sumas basicas.";
                     this.transform.position = cameraPosition[2];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -115,6 +142,7 @@ public class MapController : MonoBehaviour
                      planetName.text = "Sumotas";
                     planetDescription.text = "Ejercicios de sumas un poco mas complicadas. ";
                     this.transform.position = cameraPosition[3];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -125,6 +153,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Restitas";
                     planetDescription.text = "Ejercicios de restas sencillos.";
                     this.transform.position = cameraPosition[4];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -135,6 +164,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Restotas";
                     planetDescription.text = "Ejercicios de restas mas grandotas. ";
                     this.transform.position = cameraPosition[5];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -145,6 +175,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Sumas Verticales";
                     planetDescription.text = "Cambio de sumas horizontales a verticales. ";
                     this.transform.position = cameraPosition[6];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -155,6 +186,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Restas Verticales ";
                     planetDescription.text = "Cambio de restas horizontales a verticales. ";
                     this.transform.position = cameraPosition[7];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -165,6 +197,7 @@ public class MapController : MonoBehaviour
                     planetName.text = "Sumas y restas. ";
                     planetDescription.text = "Combinacion de sumas y restas";
                     this.transform.position = cameraPosition[8];
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -174,6 +207,7 @@ public class MapController : MonoBehaviour
                     planetPanel.SetActive(true);
                     planetName.text = "No se ";
                     planetDescription.text = "";
+                    this.selectedPlanetName= hit.transform.name;
                 }
             }
 
@@ -183,6 +217,7 @@ public class MapController : MonoBehaviour
                     planetPanel.SetActive(true);
                     planetName.text = "Npi";
                     planetDescription.text = "";
+                    this.selectedPlanetName = hit.transform.name;
                 }
             }
 
@@ -192,6 +227,7 @@ public class MapController : MonoBehaviour
                     planetPanel.SetActive(true);
                     planetName.text = "I'm lost";
                     planetDescription.text = "";
+                    this.selectedPlanetName = hit.transform.name;
                 }
 
             }

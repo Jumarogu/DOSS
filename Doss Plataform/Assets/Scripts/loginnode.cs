@@ -8,30 +8,40 @@ using UnityEngine.SceneManagement;
 
 public class loginnode : MonoBehaviour
 {
-	public Button blogin;
-	public Dropdown NoLista, Grupo, day, month;
+	public Button delfin, leon;
+	public Dropdown NoLista, day, month;
 	public GameObject cookie;
+	private string grupo;
+	public Text error;
+
 	void Start(){
-		blogin.onClick.AddListener(action);
+		//blogin.onClick.AddListener(action);
+		delfin.onClick.AddListener(delfinBtnListener);
+		leon.onClick.AddListener(leonBtnListener);
+		error.enabled = false;
 
 	}
-	void action()
-	{
+
+	void delfinBtnListener(){
+		grupo = "A";
+		StartCoroutine(Connection());	
+	}
+
+	void leonBtnListener(){
+		grupo = "B";
 		StartCoroutine(Connection());
 	}
 
-	void Upload(){
-		
-	}
 
 	IEnumerator Connection()
 	{
 		WWWForm form = new WWWForm();
 		form.AddField("cumpleanos", day.options[day.value].text+"/"+month.options[month.value].text);
 		form.AddField("noLista", NoLista.options[NoLista.value].text);
-		form.AddField("grupo", Grupo.options[Grupo.value].text);
+		form.AddField("grupo", grupo);
+		//Debug.Log(grupo);
 
-		using (UnityWebRequest www = UnityWebRequest.Post("http://10.43.52.177:8080/api/login-alumno", form))
+		using (UnityWebRequest www = UnityWebRequest.Post("http://10.43.42.73:8080/api/login-alumno", form))
 		{
 			yield return www.Send();
 			if (!www.isError) {
@@ -42,6 +52,7 @@ public class loginnode : MonoBehaviour
 				SceneManager.LoadScene("planet");
 			} else {
 				Debug.Log ("Error: Contrasena o Usuario incorrectos");
+				StartCoroutine(pausa());
 			}
 		}
 
@@ -56,5 +67,11 @@ public class loginnode : MonoBehaviour
 			dictionary.Add(keyValue[0].Trim(), keyValue[1].Trim());
 		}
 		return dictionary;
+	}
+
+	IEnumerator pausa(){
+		error.enabled = true;
+		yield return new WaitForSeconds(5f);
+		error.enabled = false;
 	}
 }
