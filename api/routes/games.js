@@ -61,12 +61,12 @@ exports.registerGame = function(req, res) {
     gameRes.juegoID = req.body.juegoId;
     gameRes.tiempo = parseInt(req.body.tiempo);
     gameRes.respuesta = parseInt(req.body.respuesta);
-    gameRes.pregunta = req.body.pregunta;
+    gameRes.respuestaCorrecta = req.body.respuestaCorrecta;
     gameRes.fecha = req.body.fecha;
     gameRes.correcto = parseInt(req.body.correcto);
 
-    var insertQuery = 'INSERT INTO juegaPartida (alumnoId, juegoId, tiempo, respuesta, pregunta, fecha, correcto) VALUES ( ?, ?, ?, ?, ?, ?, ?);'
-    var data = [gameRes.alumnoID, gameRes.juegoID, gameRes.tiempo, gameRes.respuesta, gameRes.pregunta, gameRes.fecha, gameRes.correcto];
+    var insertQuery = 'INSERT INTO juegaPartida (alumnoId, juegoId, tiempo, respuesta, respuestaCorrecta, fecha, correcto) VALUES ( ?, ?, ?, ?, ?, ?, ?);'
+    var data = [gameRes.alumnoID, gameRes.juegoID, gameRes.tiempo, gameRes.respuesta, gameRes.respuestaCorrecta, gameRes.fecha, gameRes.correcto];
 
     console.log(data);
     insertQuery = mysql.format(insertQuery, data);

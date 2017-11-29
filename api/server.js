@@ -33,6 +33,7 @@ router.post('/api/alumno', studentsRoutes.registerStudent);
 router.get('/api/alumnos/lastgame/:group', studentsRoutes.getLastGame);
 router.get('/api/alumnos/max/:group', studentsRoutes.getMax);
 router.get('/api/alumnos/min/:group', studentsRoutes.getMin);
+router.get('/api/alumnos/grades/:group', studentsRoutes.getGrades);
 
 // TEACHERS
 router.post('/api/profesor/email', teacherRoutes.getTeacher);

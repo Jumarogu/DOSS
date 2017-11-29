@@ -76,9 +76,29 @@ exports.getLastGame = function (req, res) {
     });
 }
 
+
+exports.getGrades = function (req, res) {
+
+    var query = 'SELECT * FROM sumascongrupo WHERE GRUPO = ?';
+    var table = [req.params.group];
+    console.log(query + 'fuckofff');
+    query = mysql.format(query, table);
+    db.query (query, function(err, rows) {
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
+        } else {
+            if(rows.length > 0) {
+                res.json(rows).status(200);
+            } else {
+                res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
+            }
+        }  
+    });
+}
+
 exports.getMax = function (req, res) {
 
-    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MAX(Correctas) FROM sumasConGrupo) AND Grupo = ?';
+    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MAX(Correctas) FROM sumasConGrupo) AND GRUPO = ?';
     var table = [req.params.group];
     console.log(query + 'fuckofff');
     query = mysql.format(query, table);
@@ -97,7 +117,7 @@ exports.getMax = function (req, res) {
 
 exports.getMin = function (req, res) {
 
-    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MIN(Correctas) FROM sumasConGrupo) AND Grupo = ?';
+    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MIN(Correctas) FROM sumasConGrupo) AND GRUPO = ?';
     var table = [req.params.group];
     console.log(query + 'fuckofff');
     query = mysql.format(query, table);
