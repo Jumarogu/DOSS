@@ -32,7 +32,6 @@ export class ProfessorsComponent implements OnInit{
                 this.currentUser = data[0];
                 
                 this.dataService.getAlumnosLastGame(this.currentUser.grupo).subscribe(data => {
-                  console.log(data);
                   this.alumnos = data;
                   this.fillDataSource(this.alumnos);
                 })    
@@ -46,9 +45,7 @@ export class ProfessorsComponent implements OnInit{
                 this.nombre=data[0].nombres;
                 this.apellido=data[0].apellidos;
                 this.grupo=data[0].grupo;
-                console.log(data); 
                 var grp = new String(this.grupo);
-                //console.log(this.grupo.charCodeAt(0));
                 //65 unicode de A
                 //66 unicode de B
                 if((this.grupo.charCodeAt(0))==65){
@@ -62,7 +59,6 @@ export class ProfessorsComponent implements OnInit{
     }
     fillDataSource(alumnos: any[]) {
         this.ELEMENT_DATA = new Array<IElement>();
-        console.log(alumnos.length);
         for (var i = 0; i < alumnos.length; i++) {
             var myobj : IElement;
           //myobj = {};
@@ -81,13 +77,9 @@ export class ProfessorsComponent implements OnInit{
             };
             
             this.ELEMENT_DATA.push(myobj);
-            console.log('id: ' + alumnos[i].ID + ' Element addded ' + this.ELEMENT_DATA.length);
-            //console.log(ELEMENT_DATA[i]);
         }
-        console.log(this.ELEMENT_DATA.length);
         this.dataSource = new MatTableDataSource<IElement>(this.ELEMENT_DATA);
         this.dataLoaded = true;
-        console.log('bolean -> true');
     }
 
 }

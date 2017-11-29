@@ -4,9 +4,9 @@ import { AuthGuardService as AuthGuard } from '../services/auth/auth-guard.servi
 
 const LAYOUT_ROUTES: Routes = [
     { path: '', component: LayoutComponent, children: [
-        {path: '', redirectTo: 'signup', pathMatch: 'full'},
-        { path: 'signup', loadChildren: '../signup/signup.module#SignUpModule' },
+        {path: '', redirectTo: 'signin', pathMatch: 'full'},
         { path: 'signin', loadChildren: '../signin/signin.module#SignInModule' },
+        { path: 'signup', loadChildren: '../signup/signup.module#SignUpModule' },
         //{ path: 'parent', loadChildren: '../padres/padres.module#PadresModule' },
         { path: 'professor', loadChildren: '../professors/professors.module#ProfessorsModule', canActivate: [AuthGuard]}
     ]}

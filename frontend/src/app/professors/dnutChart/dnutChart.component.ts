@@ -11,9 +11,11 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 export class dnutChart implements OnInit {
  // Doughnut
  public doughnutChartLabels:string[] = ['Bueno', 'Medio', 'Malo'];
- public doughnutChartData:number[] = [5, 10, 15];
+ public doughnutChartData:number[] = [0, 0, 0];
  public doughnutChartType:string = 'doughnut';
  private currentUser: any;
+ private min : any;
+ private max : any; 
  private colors = [
     {
       backgroundColor: [
@@ -35,12 +37,12 @@ export class dnutChart implements OnInit {
             console.log(this.currentUser.grupo);
 
             this.dataService.getMaxGrade(this.currentUser.grupo).subscribe(data => {
-              data[0];
-              console.log(data[0])
+              this.max=data[0].Correctas;
+              console.log(this.max);
             })
             this.dataService.getMinGrade(this.currentUser.grupo).subscribe(data => {
-              data[0];
-              console.log(data[0])
+              this.min=data[0].Correctas;
+              console.log(this.min)
             })
 
           });
