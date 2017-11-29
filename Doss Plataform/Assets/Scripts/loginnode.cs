@@ -11,7 +11,7 @@ public class loginnode : MonoBehaviour
 	public Button delfin, leon;
 	public Dropdown NoLista, day, month;
 	public GameObject cookie;
-	private string grupo;
+	private string grupo, url;
 	public Text error;
 
 	void Start(){
@@ -19,6 +19,7 @@ public class loginnode : MonoBehaviour
 		delfin.onClick.AddListener(delfinBtnListener);
 		leon.onClick.AddListener(leonBtnListener);
 		error.enabled = false;
+		url = "http://10.43.42.73:8080/api/login-alumno";
 
 	}
 
@@ -41,7 +42,7 @@ public class loginnode : MonoBehaviour
 		form.AddField("grupo", grupo);
 		//Debug.Log(grupo);
 
-		using (UnityWebRequest www = UnityWebRequest.Post("http://10.43.42.73:8080/api/login-alumno", form))
+		using (UnityWebRequest www = UnityWebRequest.Post(url, form))
 		{
 			yield return www.Send();
 			if (!www.isError) {

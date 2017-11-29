@@ -172,8 +172,8 @@ public class MapController : MonoBehaviour
             {
                 if(!candados[5].active){
                     planetPanel.SetActive(true);
-                    planetName.text = "Sumas Verticales";
-                    planetDescription.text = "Cambio de sumas horizontales a verticales. ";
+                    planetName.text = "Sumas y Restas";
+                    planetDescription.text = "Cuenta cuantas naves salen y regresan al planeta.";
                     this.transform.position = cameraPosition[6];
                     this.selectedPlanetName = hit.transform.name;
                 }
@@ -183,8 +183,8 @@ public class MapController : MonoBehaviour
             {
                 if(!candados[6].active){
                     planetPanel.SetActive(true);
-                    planetName.text = "Restas Verticales ";
-                    planetDescription.text = "Cambio de restas horizontales a verticales. ";
+                    planetName.text = "En Construcción ";
+                    planetDescription.text = " Seguimos trabajando para ustedes.";
                     this.transform.position = cameraPosition[7];
                     this.selectedPlanetName = hit.transform.name;
                 }
