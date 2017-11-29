@@ -10,30 +10,30 @@
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{alumnos.id}} </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="noLista">
         <mat-header-cell *matHeaderCellDef> No. Lista </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.noLista}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{alumnos.noLista}} </mat-cell>
       </ng-container>
   
       <!-- Weight Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{alumnos.name}} </mat-cell>
       </ng-container>
   
       <!-- Color Column -->
       <ng-container matColumnDef="lastName">
         <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{alumnos.lastName}} </mat-cell>
       </ng-container>
       
       <ng-container matColumnDef='dateOfLastGame'>
         <mat-header-cell *matHeaderCellDef> Última Partida </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.dateOfLastGame}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{alumnos.dateOfLastGame}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

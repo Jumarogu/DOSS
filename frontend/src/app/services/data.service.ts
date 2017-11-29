@@ -38,4 +38,10 @@ export class DataService {
     getAlumnosLastGame(grupo: string) : Observable<any> {
         return this.http.get( this.apiURL + '/alumnos/lastgame/' + grupo );
     }
+    getMaxGrade(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/alumnos/max/' + grupo );
+    }
+    getMinGrade(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/alumnos/min/' + grupo );
+    }
 }

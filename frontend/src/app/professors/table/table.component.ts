@@ -42,7 +42,6 @@ export class TableComponent implements OnInit{
   fillDataSource(alumnos: any[]) {
     let ELEMENT_DATA = new Array(alumnos.length);
     for (let i = 0; i < alumnos.length; i++) {
-      console.log(alumnos[i].Nombre);
       let myobj = { 'id':alumnos[i].ID, 'noLista': alumnos[i].noLista, 'name': alumnos[i].Nombre, 'lastName': alumnos[i].Apellidos, 'dateOfLastGame': alumnos[i].Fecha}
 
       ELEMENT_DATA.push(myobj);

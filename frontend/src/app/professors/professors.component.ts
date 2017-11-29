@@ -27,9 +27,7 @@ export class ProfessorsComponent implements OnInit{
             this.nombre=data[0].nombres;
             this.apellido=data[0].apellidos;
             this.grupo=data[0].grupo;
-            console.log(data); 
             var grp = new String(this.grupo);
-            console.log(this.grupo.charCodeAt(0));
             //65 unicode de A
             //66 unicode de B
             if((this.grupo.charCodeAt(0))==65){
