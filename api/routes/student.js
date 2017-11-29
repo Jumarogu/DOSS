@@ -76,6 +76,44 @@ exports.getLastGame = function (req, res) {
     });
 }
 
+exports.getMax = function (req, res) {
+
+    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MAX(Correctas) FROM sumasConGrupo) AND Grupo = ?';
+    var table = [req.params.group];
+    console.log(query + 'fuckofff');
+    query = mysql.format(query, table);
+    db.query (query, function(err, rows) {
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
+        } else {
+            if(rows.length > 0) {
+                res.json(rows).status(200);
+            } else {
+                res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
+            }
+        }  
+    });
+}
+
+exports.getMin = function (req, res) {
+
+    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MIN(Correctas) FROM sumasConGrupo) AND Grupo = ?';
+    var table = [req.params.group];
+    console.log(query + 'fuckofff');
+    query = mysql.format(query, table);
+    db.query (query, function(err, rows) {
+        if(err) {
+            res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
+        } else {
+            if(rows.length > 0) {
+                res.json(rows).status(200);
+            } else {
+                res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
+            }
+        }  
+    });
+}
+
 exports.updateStudent = function (req, res) {
     var query = 'UPDATE alumno SET ?? = ? , ?? = ?, ?? = ?, ?? = ?, ?? = ? WHERE id = ? '
     var table = ['nombres', req.body.nombres, 'apellidos', req.body.apellidos, 'grupo', req.body.grupo, 'noLista', req.body.noLista, 'cumpleanos', req.body.cumpleanos, req.params.id];
