@@ -20,9 +20,6 @@ public class Nivel2 : MonoBehaviour {
     private float secondsCounter=0;
     private float secondsToCount=1;
 	private string URL = "http://10.43.59.23:8080/api/juega";
-
-
-	
 	// Use this for initialization
 	void Start () {
 
@@ -59,6 +56,7 @@ public class Nivel2 : MonoBehaviour {
 
 		//Inicializar el arreglo de numero de naves 
 		navesEnPlaneta = new int [numeroDeJuegos];
+
 		numerosRandom();
 		StartCoroutine(corrutinaNaves());
 		respuestasRandom();
@@ -127,7 +125,7 @@ public class Nivel2 : MonoBehaviour {
 		errores = 2;
 		erroresTxt.text = "Vidas: " + errores;
 		//Subir info base de datos
-		string respuestaC = "¿Cuantas gano el planeta? R: " +respuestaJuegoActual;
+		string respuestaC = "¿Cuantas naves gano el planeta? R: " +respuestaJuegoActual;
 		string date= System.DateTime.Now.ToString("dd/MM/yyyy");
         subirInfo(cook["id"],"03",seconds,respuestaNino+"",respuestaC,date,isOK());
         seconds = 0;
@@ -154,10 +152,10 @@ public class Nivel2 : MonoBehaviour {
 			errores --;
 			erroresTxt.text = "Vidas: " + errores;
 			if(errores == 0){
-			string nino = ansTextArray[0].text ;
-			respuestaNino = int.Parse(nino);
-			terminarJuego();
-		}
+				string nino = ansTextArray[0].text ;
+				respuestaNino = int.Parse(nino);
+				terminarJuego();
+			}
 		}
 	}
 	void listenerBtn2(){

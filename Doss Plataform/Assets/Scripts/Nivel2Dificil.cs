@@ -130,7 +130,7 @@ public class Nivel2Dificil : MonoBehaviour {
 		errores = 2;
 		erroresTxt.text = "Vidas: " + errores;		
 		//Subir info base de datos
-		string respuestaC = "¿Cuantas gano el planeta? R: " +respuestaJuegoActual;
+		string respuestaC = "¿Cuantas naves gano el planeta? R: " +respuestaJuegoActual;
 		string date= System.DateTime.Now.ToString("dd/MM/yyyy");
         subirInfo(cook["id"],"03",seconds,respuestaNino+"",respuestaC,date,isOK());
         seconds = 0;
