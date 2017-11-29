@@ -130,7 +130,7 @@ public class Nivel3 : MonoBehaviour {
 		//Subir info base de datos
 		string respuestaC = "¿Cuantas naves quedaron en el planeta? R: " +respuestaJuegoActual;
 		string date= System.DateTime.Now.ToString("dd/MM/yyyy");
-        subirInfo(cook["id"],"03",seconds,respuestaNino+"",respuestaC,date,isOK());
+        subirInfo(cook["id"],"05",seconds,respuestaNino+"",respuestaC,date,isOK());
         seconds = 0;
 		juegoActual ++;
 		if(juegoActual == numeroDeJuegos){
