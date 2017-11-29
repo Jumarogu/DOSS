@@ -28,12 +28,13 @@ router.get('/api/alumno', studentsRoutes.getStudents);
 router.get('/api/alumno/:id', studentsRoutes.getStudent);
 router.get('/api/alumno/:nombres/', studentsRoutes.getStudentByName);
 //router.get('api/alumno/', studentsRoutes.getStudentByGroup);
-router.put('/api/alumno/:id', studentsRoutes.updateStudent);
-router.post('/api/alumno', studentsRoutes.registerStudent);
 router.get('/api/alumnos/lastgame/:group', studentsRoutes.getLastGame);
 router.get('/api/alumnos/max/:group', studentsRoutes.getMax);
 router.get('/api/alumnos/min/:group', studentsRoutes.getMin);
 router.get('/api/alumnos/grades/:group', studentsRoutes.getGrades);
+
+router.post('/api/alumno', studentsRoutes.registerStudent);
+router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 
 // TEACHERS
 router.post('/api/profesor/email', teacherRoutes.getTeacher);

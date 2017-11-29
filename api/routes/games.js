@@ -60,7 +60,7 @@ exports.registerGame = function(req, res) {
     gameRes.alumnoID = req.body.alumnoId;
     gameRes.juegoID = req.body.juegoId;
     gameRes.tiempo = parseInt(req.body.tiempo);
-    gameRes.respuesta = parseInt(req.body.respuesta);
+    gameRes.respuesta = req.body.respuesta;
     gameRes.respuestaCorrecta = req.body.respuestaCorrecta;
     gameRes.fecha = req.body.fecha;
     gameRes.correcto = parseInt(req.body.correcto);
@@ -68,7 +68,7 @@ exports.registerGame = function(req, res) {
     var insertQuery = 'INSERT INTO juegaPartida (alumnoId, juegoId, tiempo, respuesta, respuestaCorrecta, fecha, correcto) VALUES ( ?, ?, ?, ?, ?, ?, ?);'
     var data = [gameRes.alumnoID, gameRes.juegoID, gameRes.tiempo, gameRes.respuesta, gameRes.respuestaCorrecta, gameRes.fecha, gameRes.correcto];
 
-    console.log(data);
+    //console.log(data);
     insertQuery = mysql.format(insertQuery, data);
     console.log(insertQuery);
 
@@ -77,7 +77,7 @@ exports.registerGame = function(req, res) {
             console.log(err);
             res.json({"Error" : true, "Message" : "Error executing INSERT QUERY", 'error' : err});
         } else {
-            console.log(rows);
+            //console.log(rows);
             res.status(200).json({'Error' : false, "Message" : 'Inserted game', 'SQL response' : rows});
         }
     });

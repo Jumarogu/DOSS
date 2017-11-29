@@ -1,3 +1,4 @@
+
 var mysql = require('mysql');
 
 var db = require('../db');
@@ -97,8 +98,8 @@ exports.getGrades = function (req, res) {
 }
 
 exports.getMax = function (req, res) {
-
-    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MAX(Correctas) FROM sumasConGrupo) AND GRUPO = ?';
+    
+    var query = 'SELECT Alumno, Proporcion FROM proporcionConGrupo WHERE Proporcion = (SELECT MAX(Proporcion) FROM proporcionConGrupo) AND Grupo = ? '
     var table = [req.params.group];
     console.log(query + 'fuckofff');
     query = mysql.format(query, table);
@@ -107,7 +108,7 @@ exports.getMax = function (req, res) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
         } else {
             if(rows.length > 0) {
-                res.json(rows).status(200);
+                res.json(rows[0]).status(200);
             } else {
                 res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
             }
@@ -117,7 +118,7 @@ exports.getMax = function (req, res) {
 
 exports.getMin = function (req, res) {
 
-    var query = 'SELECT Alumno, Correctas FROM sumasconGrupo WHERE Correctas = (SELECT MIN(Correctas) FROM sumasConGrupo) AND GRUPO = ?';
+    var query = 'SELECT Alumno, Proporcion FROM proporcionConGrupo WHERE Proporcion = (SELECT MIN(Proporcion) FROM proporcionConGrupo) AND Grupo = ? ';
     var table = [req.params.group];
     console.log(query + 'fuckofff');
     query = mysql.format(query, table);
@@ -126,7 +127,7 @@ exports.getMin = function (req, res) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
         } else {
             if(rows.length > 0) {
-                res.json(rows).status(200);
+                res.json(rows[0]).status(200);
             } else {
                 res.json({"Error" : true, 'Message' : ' Error Not user found'}).status(400);
             }
@@ -160,8 +161,8 @@ exports.registerStudent = function(req, res) {
     var selectTable = ['noLista', req.body.noLista];
     selectQuery = mysql.format(selectQuery, selectTable);
 
-    var query = "INSERT INTO ?? (id, nombres, apellidos, cumpleanos, noLista, grupo, profesorID) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    var table = ['alumno', userID, req.body.nombres, req.body.apellidos, req.body.cumpleanos, noLista, req.body.grupo, req.body.profesorID];
+    var query = "INSERT INTO ?? (id, nombres, apellidos, cumpleanos, noLista, grupo, genero, profesorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    var table = ['alumno', userID, req.body.nombres, req.body.apellidos, req.body.cumpleanos, noLista, req.body.grupo, req.body.genero, req.body.profesorID];
     query = mysql.format(query, table);
     
     console.log(selectQuery);
@@ -179,7 +180,13 @@ exports.registerStudent = function(req, res) {
                 if(err) {
                     res.json({"Error" : true, "Message" : "Error executing INSERT query", 'error' : err});
                 } else {
-                    res.status(200).json({'Error' : false, "Message" : 'Inserted student', 'SQL response' : rows});
+                    db.query(selectQuery, function(err, rows) {
+                        if(err){
+                            res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err});
+                        } else {
+                            res.status(200).json(rows[0]);
+                        }
+                    })  
                 } 
             })
         }
