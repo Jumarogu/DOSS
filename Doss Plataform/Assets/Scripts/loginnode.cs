@@ -19,7 +19,7 @@ public class loginnode : MonoBehaviour
 		delfin.onClick.AddListener(delfinBtnListener);
 		leon.onClick.AddListener(leonBtnListener);
 		error.enabled = false;
-		url = "http://10.43.42.73:8080/api/login-alumno";
+		url = "http://10.43.59.23:8080/api/login-alumno";
 
 	}
 

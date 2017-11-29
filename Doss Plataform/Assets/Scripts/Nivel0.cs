@@ -4,15 +4,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.Networking;
-//using UnityEngine.Random;
-//using System;
+
 
 public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
 	private GameObject[] ships;	
 	private GameObject cookie;
-	 private Dictionary<string,string> cook;
+	private Dictionary<string,string> cook;
 	private int [] numerosArray ;
 	private int numeroDeJuegos, j , juegoActual, numNavesEnJuegoActual,errores;
 	private int seconds=0;
@@ -21,7 +20,7 @@ public class Nivel0 : MonoBehaviour {
 	private float height,width,separacionNaves,i, posInicial;
 	private string [] respuestas;
 	private string respuestaNino;
-	private string URL = "http://10.43.24.73:8080/api/juega";
+	private string URL = "http://10.43.59.23:8080/api/juega";
 	private Camera cam; 
 	private UnityEngine.UI.Text [] ansTextArray;
 	private Text ganaste,vidas;
@@ -93,10 +92,6 @@ public class Nivel0 : MonoBehaviour {
 				patron = ships[j].GetComponent<Naves>();
 				patron.enabled = false;
 			}
-		sacarNaves();
-	}
-
-	void sacarNaves(){
 		for(int k=0; k<numerosArray[juegoActual] - 1; k++){
 				salida = ships[k].GetComponent<SalirNaves>();
 				salida.enabled = true;
@@ -228,9 +223,7 @@ public class Nivel0 : MonoBehaviour {
 		vidas.text = "Vidas: " + errores;
 		string respuestaC = "¿Cuantas Naves Hay? R: " + (numNavesEnJuegoActual - 1)+"";
 		string date= System.DateTime.Now.ToString("dd/MM/yyyy");
-		Debug.Log("la respuesta es " + respuestaC);
         subirInfo(cook["id"],"01",seconds,respuestaNino,respuestaC,date,isOK());
-        //date=date;
         seconds = 0;
 		respuestasRandom();
 		generarNaves();
@@ -250,7 +243,7 @@ public class Nivel0 : MonoBehaviour {
         form.AddField("respuestaCorrecta",respuestaCorrecta); //respuesta correcta
         form.AddField("fecha", fecha);
         form.AddField("correcto", correcto);
-        using (UnityWebRequest www = UnityWebRequest.Post( "http://10.43.42.73:8080/api/juega", form))
+        using (UnityWebRequest www = UnityWebRequest.Post( URL, form))
         {
             yield return www.Send();
             if (!www.isError) {

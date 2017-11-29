@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using UnityEngine.Networking;
 
 public class Nivel1 : MonoBehaviour {
 
@@ -9,13 +11,22 @@ public class Nivel1 : MonoBehaviour {
 	private Camera cam; 
 	private Text ganaste, textoNumero, textoRespuesta, erroresTxt;
 	private string [] numeros = {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"}; 
-	private string respuesta; 
+	private string respuesta, respuestaNino; 
 	private int numeroDeJuegos , j, juegoActual, respuestaActual, letraActual, errores;
 	private int [] numerosArray;
 	private InputField respuestaInField;
+	private GameObject cookie;
+	private Dictionary<string,string> cook;
+	private int seconds=0;
+    private float secondsCounter=0;
+    private float secondsToCount=1;
 
 	// Use this for initialization
 	void Start () {
+
+		//Referencia a la base de datos 
+		cookie = GameObject.Find("Cookies");
+        cook = cookie.GetComponent<sesion>().getcookie();
 		
 		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
 		ganaste.enabled = false;
@@ -41,16 +52,26 @@ public class Nivel1 : MonoBehaviour {
 		numerosRandom();
 	
 	}
-	
+
+	void Update(){
+		secondsCounter += Time.deltaTime;
+		if (secondsCounter >= secondsToCount)
+		{
+			secondsCounter=0;
+			seconds++;
+		}
+
+	}
 
 	void numerosRandom(){
 		//Chechar si el juego se acabo
 		if(juegoActual >= numeroDeJuegos){
-				SceneManager.LoadScene("planet");
-				Debug.Log("GAME OVER");
-
+			/*string respuestaC = "Escribe el número R: " + respuesta;
+			string date= System.DateTime.Now.ToString("dd/MM/yyyy");
+			Debug.Log("la respuesta del morro es " + respuestaNino);
+			subirInfo(cook["id"],"02",seconds,respuestaNino,respuestaC,date,isOK());			*/
+			SceneManager.LoadScene("planet");
 		}
-
 		//generar los numeros random
 		int numPas, numActual;
 		numPas = 0 ;
@@ -92,16 +113,27 @@ public class Nivel1 : MonoBehaviour {
 			juegoActual++;
 			textoRespuesta.text = "";
 			erroresTxt.text = "Vidas: " + errores;
-			letraActual = 0;			
+			letraActual = 0;
+			string respuestaC = "Escribe el número R: " + respuesta;
+			respuestaNino = ans;
+			string date= System.DateTime.Now.ToString("dd/MM/yyyy");
+			Debug.Log("la respuesta del morro es " + respuestaNino);
+			subirInfo(cook["id"],"02",seconds,respuestaNino,respuestaC,date,isOK());			
 			numerosRandom();
+			seconds = 0;
 		}
 		if(errores <1){
+			respuestaNino = ans;
 			errores = 3;
 			juegoActual++;
 			textoRespuesta.text = "";
 			erroresTxt.text = "Vidas: " + errores;
-			letraActual = 0;			
+			letraActual = 0;	
+			string respuestaC = "Escribe el número R: " + respuesta;
+			string date= System.DateTime.Now.ToString("dd/MM/yyyy");
+			subirInfo(cook["id"],"02",seconds,respuestaNino,respuestaC,date,isOK());		
 			numerosRandom();
+			seconds = 0;
 			
 		}
 		
@@ -113,6 +145,39 @@ public class Nivel1 : MonoBehaviour {
 		yield return new WaitForSeconds(1);
 		ganaste.enabled = false;
 		  
+	}
+
+	IEnumerator Connection(string alumnoid,string juegoid,int time,string respuestas,string respuestaCorrecta,string fecha,int correcto)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("alumnoId", alumnoid);
+        form.AddField("juegoId", juegoid);
+        form.AddField("tiempo", time);
+        form.AddField("respuesta", respuestas);
+        form.AddField("respuestaCorrecta",respuestaCorrecta); //respuesta correcta
+        form.AddField("fecha", fecha);
+        form.AddField("correcto", correcto);
+        using (UnityWebRequest www = UnityWebRequest.Post( "http://10.43.59.23:8080/api/juega", form))
+        {
+            yield return www.Send();
+            if (!www.isError) {
+                Debug.Log ("Se subio informacion correctamente");
+            } else {
+                Debug.Log ("Error: Algo ocurrio al momento de subir datos");
+            }
+        }
+    }
+
+	void subirInfo(string alumnoid,string juegoid,int time,string respuesta,string respuestaCorrecta,string fecha,int correcto){
+        StartCoroutine(Connection(alumnoid,juegoid,time,respuesta,respuestaCorrecta,fecha,correcto));
+    }
+
+	int isOK(){
+		if(respuesta == respuestaNino){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	
