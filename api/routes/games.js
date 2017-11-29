@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var db = require('../db');
+var clasification = require('../functions/clasification');
 
 var gameRes = {
     "alumnoID" : '',
@@ -81,4 +82,44 @@ exports.registerGame = function(req, res) {
             res.status(200).json({'Error' : false, "Message" : 'Inserted game', 'SQL response' : rows});
         }
     });
+    clasification.clasificationByGroup('A');
 }
+
+exports.getHardGame = function (req, res) {
+
+    var selectQuery = 'SELECT * FROM JUEGOMASDIFICIL'
+
+    //console.log(data);
+    selectQuery = mysql.format(selectQuery);
+    console.log(selectQuery);
+
+    db.query(selectQuery, function(err, rows){
+        if(err) {
+            console.log(err);
+            res.json({"Error" : true, "Message" : "Error executing SELECT QUERY", 'error' : err});
+        } else {
+            //console.log(rows);
+            res.status(200).json({'Error' : false, "Message" : 'SELECT HardGame', 'responseRows' : rows});
+        }
+    });
+}
+
+exports.getEasyGame = function (req, res) {
+    
+    var selectQuery = 'SELECT * FROM JUEGOMASFACIL'
+    
+        //console.log(data);
+        selectQuery = mysql.format(selectQuery);
+        console.log(selectQuery);
+    
+        db.query(selectQuery, function(err, rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing SELECT QUERY", 'error' : err});
+            } else {
+                //console.log(rows);
+                res.status(200).json({'Error' : false, "Message" : 'SELECT HardGame', 'responseRows' : rows});
+            }
+        });
+}
+
