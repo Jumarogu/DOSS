@@ -7,14 +7,14 @@ public class Nivel0 : MonoBehaviour {
 
 	public GameObject [] nave;
 	private int [] numerosArray ;
-	private int numeroDeJuegos, j , juegoActual, numNavesEnJuegoActual;
+	private int numeroDeJuegos, j , juegoActual, numNavesEnJuegoActual,errores;
 	private float height,width,separacionNaves,i, posInicial;
 	private string []respuestas;
 	private string respuestaNino;
 	private Camera cam; 
 	private UnityEngine.UI.Text [] ansTextArray;
 	private Button ans1Btn,ans2Btn,ans3Btn;
-	private Text ganaste;
+	private Text ganaste,vidas;
 	private GameObject[] ships;
 
 	private Naves patron;
@@ -27,16 +27,17 @@ public class Nivel0 : MonoBehaviour {
 		
 		//referencia al texto de ganar 
 		ganaste = GameObject.Find("Ganaste").GetComponent<UnityEngine.UI.Text>();
+		vidas = GameObject.Find("Errores").GetComponent<UnityEngine.UI.Text>();
 		ganaste.enabled = false;
 		cam = GameObject.Find("Main Camera").GetComponent<Camera>(); // Obtener la referencia a la camara
 		numeroDeJuegos = 3; 
 		juegoActual = 0;
-		
+		errores = 2;
 		//Calcular el tamaño de la pantalla 
 		height = 2f * cam.orthographicSize;
 		width = height * cam.aspect;
 		posInicial = width / 2; 
-
+		vidas.text = "Vidas: " + errores;
 		//Referencias al Texto de los botones
 		ansTextArray = new Text [3];
 		for(int k = 0 ;k<3;k++){
@@ -67,7 +68,7 @@ public class Nivel0 : MonoBehaviour {
 
 	void Update(){
 
-		//Debug.Log("numero de naves en el juego: " + numNavesEnJuegoActual);
+		/*Debug.Log("numero de naves en el juego: " + (numNavesEnJuegoActual-1));
 		if(ships[0] ==  null){
 			juegoActual ++;
 			if(juegoActual > numeroDeJuegos){
@@ -77,10 +78,8 @@ public class Nivel0 : MonoBehaviour {
 			}
 			respuestasRandom();
 			generarNaves();
-			ganaste.enabled = false;
-			
-			
-		}
+			ganaste.enabled = false;	
+		}*/
 	}
 
 	void desactivarPatron(){
@@ -93,6 +92,8 @@ public class Nivel0 : MonoBehaviour {
 				salida = ships[j].GetComponent<SalirNaves>();
 				salida.enabled = true;
 		}
+		juegoActual ++;
+		StartCoroutine(pasarAlSiguienteJuego());
 	}
 
 	void numerosRandom(){
@@ -153,33 +154,71 @@ public class Nivel0 : MonoBehaviour {
 	
 
 	void respuesta1(){
-		respuestaNino = ansTextArray[0].text;
-		Debug.Log(respuestaNino);
+		
+		//Debug.Log(respuestaNino);
 		if(ansTextArray[0].text == (numNavesEnJuegoActual-1) + ""){
+			respuestaNino = ansTextArray[0].text;
 			ganaste.enabled = true;
 			desactivarPatron();
+		}else{
+			errores --;
+			vidas.text = "Vidas: " + errores;
+			if(errores <=0){
+				respuestaNino = ansTextArray[0].text;
+				desactivarPatron();	
+			}
 		}
 
 	}
 
 	void respuesta2(){
-		respuestaNino = ansTextArray[1].text;
-		Debug.Log(respuestaNino);
+		
+		//Debug.Log(respuestaNino);
 		if(ansTextArray[1].text == (numNavesEnJuegoActual-1) + ""){
+			respuestaNino = ansTextArray[1].text;
 			ganaste.enabled = true;
 			desactivarPatron();
+		}else{
+			errores --;
+			vidas.text = "Vidas: " + errores;
+			if(errores <=0){
+				respuestaNino = ansTextArray[1].text;
+				desactivarPatron();	
+			}
 		}
 
 	}
 
 	void respuesta3(){
-		respuestaNino = ansTextArray[2].text;
-		Debug.Log(numNavesEnJuegoActual + "");
+		//Debug.Log(numNavesEnJuegoActual + "");
 		if(ansTextArray[2].text == (numNavesEnJuegoActual -1) +  ""){
+			respuestaNino = ansTextArray[2].text;
 			ganaste.enabled = true;
 			desactivarPatron();
+		}else{
+			errores --;
+			vidas.text = "Vidas: " + errores;
+			if(errores <=0){
+				respuestaNino = ansTextArray[2].text;
+				desactivarPatron();	
+			}
 		}
 
+	}
+
+	IEnumerator pasarAlSiguienteJuego(){
+		if(juegoActual >= numeroDeJuegos){
+				SceneManager.LoadScene("planet");
+			}
+		yield return new WaitForSeconds(2f);
+		Debug.Log("juego actual: " + juegoActual);
+		
+			
+			errores = 2;
+			vidas.text = "Vidas: " + errores;
+			respuestasRandom();
+			generarNaves();
+			ganaste.enabled = false;
 	}
 
 
