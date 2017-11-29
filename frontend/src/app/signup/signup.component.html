@@ -1,9 +1,11 @@
 <section>
     <mat-card>
-        <form (ngSubmit)='signup' #loginForm="ngForm">
-            <mat-card-title>
-                <h1>Registro</h1>
-            </mat-card-title>
+          
+        <img mat-card-image style="width: 37%;float:left;" src="http://reciplast.mx/masc/logoSpaceMathsBlue.png">   
+        <mat-card-title>
+                <h1 style="color:#112868;padding-right:80px;font-size:45px;">Registro</h1>
+            </mat-card-title>         
+        <form (ngSubmit)='signup' #loginForm="ngForm" style="margin-top:105px;">
             <div>
                 <mat-form-field>
                     <input type='text' ngModel [(ngModel)]='user.name' name='name' matInput placeholder="nombres" required>
@@ -31,7 +33,6 @@
             </div>
             <div>
                 <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color">Registro</button>
-                <button mat-raised-button (click)='auth.logout()' class="default-primary-color">logout</button>
             </div>
         </form>
     </mat-card>

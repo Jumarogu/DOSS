@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.dark-primary-color    { background: rgba(0, 89, 191, 0.9); }
+.dark-primary-color    { background: rgba(0, 72, 155, 0.9); }
 .default-primary-color { background: #0055BF; }
 .light-primary-color   { background: #B2EBF2; }
 .text-primary-color    { color: #FFFFFF; }

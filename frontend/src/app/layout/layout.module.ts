@@ -8,6 +8,7 @@ import { LayoutComponent } from "./layout.component";
 import { SignInModule } from '../signin/signin.module';
 import { SignUpModule } from '../signup/signup.module';
 import { ProfessorsModule } from '../professors/professors.module';
+import { AuthService } from '../services/auth/auth.service';
 
 @NgModule ({
     declarations: [
@@ -27,7 +28,9 @@ import { ProfessorsModule } from '../professors/professors.module';
         AMaterialModule,
         ProfessorsModule,
     ],
-    providers: []
+    providers: [
+        AuthService
+    ]
 })
 
 export class LayoutModule {  }

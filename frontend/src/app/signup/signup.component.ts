@@ -20,12 +20,11 @@ export class SignUpComponent implements OnInit{
         this.user.password = "";
 
         this.dataService.getAlumnos().subscribe( data => {
-            console.log(data['Alumnos']);
         });
     }
 
     printUser() {
-        console.log(this.user);
+       
     }
 
     ngOnInit(): void {
