@@ -1,0 +1,42 @@
+
+.botonNav{
+    margin-top: 10px;
+    align-content: center;
+    margin-left:93%;
+    height: 50px;
+    width: 50px; 
+    background: rgb(255, 255, 255);
+    z-index: 1000;
+}
+.botonNav:hover{
+    background: rgb(170, 206, 248);
+}
+
+.example-container {
+    width: 100%;
+    height: 100%;
+    background-color:rgba(255, 255, 255, 0.109);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .example-sidenav {
+    margin: 0;
+    width: 15%;
+    height: 100%;
+    background-color:rgba(255, 255, 255, 0.87);
+  }
+  button {
+    width: 50%;
+    margin-top: 10px;
+    color:rgb(255, 255, 255);
+    background:#0055BF;
+    font-family: 'Indie Flower';
+
+}

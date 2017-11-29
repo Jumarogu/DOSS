@@ -1,3 +1,33 @@
 <top-nav></top-nav>
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav class="example-sidenav">
+        <mat-grid-list cols="1" rowHeight="1:1">
+            <div style="margin-top:10px;">
+                <mat-grid-tile>
+                    <img style="width:100%;" src="http://www.reciplast.mx/masc/logoSpaceMathsBlue.png">
+                </mat-grid-tile>
+            </div>
+        </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="3:1">
+            <mat-grid-tile>
+                <button mat-button style="border-radius: 5px;text-align:left;font-size:16px;">Ayuda
+                    <mat-icon style="padding-left:10px;"> help outline</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <button (click)='auth.logout(); sidenav.close()' mat-button style="width:80%;border-radius: 5px;text-align:left;font-size:16px;">
+                    Cerrar Sesion
+                    <mat-icon style="padding-left:10px;">reply</mat-icon>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-sidenav>
 
+    <div class="example-sidenav-content">
+
+        <button *ngIf='this.auth.isAuthenticated()' mat-fab class="botonNav" type="button" mat-button (click)="sidenav.open()">
+            <mat-icon style="color:#0055BF" aria-label="Menu">menu</mat-icon>
+        </button>
+    </div>
+    <router-outlet></router-outlet>
+</mat-sidenav-container>

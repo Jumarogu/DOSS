@@ -61,13 +61,6 @@ export class ProfessorsComponent implements OnInit{
         this.ELEMENT_DATA = new Array<IElement>();
         for (var i = 0; i < alumnos.length; i++) {
             var myobj : IElement;
-          //myobj = {};
-        //   myobj.id = alumnos[i].ID;
-        //   myobj.noLista = alumnos[i].noLista;
-        //   myobj.name = alumnos[i].Nombre;
-        //   myobj.lastName = alumnos[i].Apellidos;
-        //   myobj.dateOfLastGame = alumnos[i].Fecha;
-
             myobj = {
                 id: alumnos[i].ID, 
                 noLista: alumnos[i].noLista, 
