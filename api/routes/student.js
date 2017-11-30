@@ -58,6 +58,40 @@ exports.getStudentByGroup = function (req, res) {
     });
 }
 
+exports.compra = function(req, res) {
+    
+    var query = 'UPDATE alumno SET dinero = dinero - ? WHERE id = ? ';
+    var table = [req.body.gasto, req.body.alumnoid];
+
+    var querySelect = 'SELECT * FROM ALUMNO WHERE id = ?'
+    var tableSelect = [req.body.alumnoid];
+
+    query = mysql.format(query, table);
+    querySelect = mysql.format(querySelect, tableSelect);
+
+    db.query(query, function(err, rows) {
+        if (err){
+            console.log('Error ' + err);
+            res.json({'Error': true, 'Message': 'Error executing MySQL query UPDATE'}).status(500);
+        } else {
+            console.log(query);
+            db.query(querySelect, function(err, rows) {
+                if (err) {
+                    console.log('Error ' + err);
+                    res.json({'Error': true, 'Message': 'Error executing MySQL SELECT'}).status(500);
+                } else {
+                    console.log(rows[0]);
+                    if(rows.length > 0) {
+                        res.json(rows[0]).status(200);
+                    } else {
+                        res.json({'Error' : true, 'Message ' : 'Not existing student'}).status(300);
+                    }
+                }
+            })
+        }
+    })
+}
+
 exports.getLastGame = function (req, res) {
 
     var query = 'SELECT * FROM LastPartida WHERE GRUPO = ?';

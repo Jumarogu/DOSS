@@ -40,6 +40,8 @@ router.put('/api/alumno/:id', studentsRoutes.updateStudent);
 // TEACHERS
 router.post('/api/profesor/email', teacherRoutes.getTeacher);
 
+// STORE
+router.post('/api/compra', studentsRoutes.compra);
 
 // PARENTS
 
@@ -51,8 +53,8 @@ router.get('/api/jugado/:alumnoId', gamesRoutes.getStudentResults);
 router.get('/api/jugado/:grupoId', gamesRoutes.getGroupResults);
 router.get('/api/jugado/:alumnoId&juegoId', gamesRoutes.getStudentGameResults);
 
-router.get('/api/juego/dificil', gamesRoutes.getHardGame);
-router.get('/api/juego/facil', gamesRoutes.getEasyGame);
+router.get('/api/game/dificil', gamesRoutes.getHardGame);
+router.get('/api/game/facil', gamesRoutes.getEasyGame);
 
 router.post('/api/juega', gamesRoutes.registerGame);
 

@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var db = require('../db');
-var clasification = require('../functions/clasification');
+var functions = require('../functions/clasification');
 
 var gameRes = {
     "alumnoID" : '',
@@ -82,12 +82,12 @@ exports.registerGame = function(req, res) {
             res.status(200).json({'Error' : false, "Message" : 'Inserted game', 'SQL response' : rows});
         }
     });
-    clasification.clasificationByGroup('A');
+    functions.clasificationByGroup('A', gameRes.alumnoID, gameRes.correcto);
 }
 
 exports.getHardGame = function (req, res) {
 
-    var selectQuery = 'SELECT * FROM JUEGOMASDIFICIL'
+    var selectQuery = 'SELECT * FROM juegomasdificil'
 
     //console.log(data);
     selectQuery = mysql.format(selectQuery);
@@ -105,8 +105,8 @@ exports.getHardGame = function (req, res) {
 }
 
 exports.getEasyGame = function (req, res) {
-    
-    var selectQuery = 'SELECT * FROM JUEGOMASFACIL'
+
+    var selectQuery = 'SELECT * FROM juegomasfacil'
     
         //console.log(data);
         selectQuery = mysql.format(selectQuery);
