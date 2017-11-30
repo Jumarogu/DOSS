@@ -1,3 +1,4 @@
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -6,6 +7,7 @@ var loginHandler = require('./routes/login');
 var studentsRoutes = require('./routes/student');
 var teacherRoutes = require('./routes/teachers');
 var gamesRoutes = require('./routes/games');
+var parentRoutes = require('./routes/parents');
 
 
 var app = express();
@@ -45,7 +47,7 @@ router.post('/api/profesor/email', teacherRoutes.getTeacher);
 router.post('/api/compra', studentsRoutes.compra);
 
 // PARENTS
-
+router.post('/api/parent', parentRoutes.registerParent);
 
 // GAMES
 router.get('/api/juego', gamesRoutes.getGames);

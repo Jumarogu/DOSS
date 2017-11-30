@@ -194,8 +194,8 @@ exports.registerStudent = function(req, res) {
     var selectTable = ['noLista', req.body.noLista];
     selectQuery = mysql.format(selectQuery, selectTable);
 
-    var query = "INSERT INTO ?? (id, nombres, apellidos, cumpleanos, noLista, grupo, genero, profesorID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    var table = ['alumno', userID, req.body.nombres, req.body.apellidos, req.body.cumpleanos, noLista, req.body.grupo, req.body.genero, req.body.profesorID];
+    var query = "INSERT INTO ?? (id, nombres, apellidos, cumpleanos, noLista, grupo, genero, profesorId, padreId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    var table = ['alumno', userID, req.body.nombres, req.body.apellidos, req.body.cumpleanos, noLista, req.body.grupo, req.body.genero, req.body.profesorid, req.body.padreid];
     query = mysql.format(query, table);
     
     console.log(selectQuery);
