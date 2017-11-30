@@ -25,12 +25,16 @@ export class ProfessorsComponent implements OnInit{
    private alumnos: any[];
    private ELEMENT_DATA: IElement[];
    private hard_tema: any;
+   private easy_tema: any;
    private dataisLoaded : boolean;
+   private data_isLoaded : boolean;
+   
 
     
     constructor(private router: Router, private dataService: DataService, private auth: AuthService) {
         this.dataLoaded = false;
         this.dataisLoaded = false;
+        this.data_isLoaded = false;
         if(this.auth.isAuthenticated()){
             this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
                 this.currentUser = data[0];
@@ -58,12 +62,16 @@ export class ProfessorsComponent implements OnInit{
                 if((this.grupo.charCodeAt(0))==65){
                     this.mascota="http://reciplast.mx/masc/avatarDelfin.png";
                 }
-                this.dataService.getFacil().subscribe( data=>{
+                this.dataService.getDificil().subscribe( data=>{
                     console.log(data.responseRows[0].id);
                     this.hard_tema=data.responseRows[0];
                     this.dataisLoaded=true;
-                    // this.hard_tema="ID: "+data.responseRows[0].id+"Nombre: "+data.responseRows[0].nombre+"Tema: "+data.responseRows[0].tema
-                    // +"Descripción: "+data.responseRows[0].descripcion;
+                })
+
+                this.dataService.getFacil().subscribe( data=>{
+                    console.log(data.responseRows[0].id);
+                    this.easy_tema=data.responseRows[0];
+                    this.data_isLoaded=true;
                 })
 
             })

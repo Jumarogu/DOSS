@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { AMaterialModule } from '../material/material.module';
 import { ProfessorsComponent } from './professors.component';
+import { RegistroComponent } from './registro/registro.component';
 import { dnutChart} from './dnutChart/dnutChart.component';
 import { baseChart} from './baseChart/baseChart.component';
 import {TableComponent} from './table/table.component';
@@ -12,7 +13,8 @@ import { AuthGuardService as AuthGuard } from '../services/auth/auth-guard.servi
 import { AuthService } from '../services/auth/auth.service';
 
 const routes: Routes = [
-    {path: 'professor', component: ProfessorsComponent, canActivate: [AuthGuard]}
+    {path: 'professor', component: ProfessorsComponent, canActivate: [AuthGuard]},
+    {path: 'professor/registro', component: RegistroComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
@@ -21,6 +23,7 @@ const routes: Routes = [
         dnutChart,
         baseChart,
         TableComponent,
+        RegistroComponent,
         
      
     ],

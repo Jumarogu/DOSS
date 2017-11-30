@@ -15,7 +15,7 @@
         <mat-grid-tile>
             <mat-card id="avisos" *ngIf="this.dataisLoaded">
                 <mat-card-title>TEMAS DIFICILES</mat-card-title>
-                <img mat-card-image style="width: 30%;" src="http://www.clker.com/cliparts/M/h/R/9/8/H/red-led-on-hi.png">
+                <img mat-card-image style="width: 20%;" src="http://madsenworld.dk/anigif/light/red_bl.gif">
                 <mat-card-content style="font-size:20px;text-align:left;">Nombre: {{hard_tema.nombre}} </mat-card-content>
                 <mat-card-content style="font-size:20px;text-align:left;">Descripción: {{hard_tema.descripcion}} </mat-card-content>
                 <mat-card-content style="font-size:20px;text-align:left;">Tema: {{hard_tema.tema}} </mat-card-content>
@@ -23,17 +23,17 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card id="avisos" *ngIf="this.dataisLoaded">
+            <mat-card id="avisos" *ngIf="this.data_isLoaded">
                 <mat-card-title>TEMAS FACILES</mat-card-title>
-                <img mat-card-image style="width: 30%;" src="http://www.clker.com/cliparts/z/r/p/I/x/a/green-led-on-md.png">
-                <mat-card-content style="font-size:20px;text-align:left;">Nombre: {{hard_tema.nombre}} </mat-card-content>
-                <mat-card-content style="font-size:20px;text-align:left;">Descripción: {{hard_tema.descripcion}} </mat-card-content>
-                <mat-card-content style="font-size:20px;text-align:left;">Tema: {{hard_tema.tema}} </mat-card-content>
+                <img mat-card-image style="width: 20%;" src="http://madsenworld.dk/anigif/light/green_bl.gif">
+                <mat-card-content style="font-size:20px;text-align:left;">Nombre: {{easy_tema.nombre}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Descripción: {{easy_tema.descripcion}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Tema: {{easy_tema.tema}} </mat-card-content>
                 
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card id="avisos">
+            <mat-card id="avisos" style=" min-height: 60%;">
                 <mat-card-title></mat-card-title>
                 <dnutChart></dnutChart>
             </mat-card>

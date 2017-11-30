@@ -1,0 +1,39 @@
+<section>
+    <mat-card>
+          
+        <img mat-card-image style="width: 37%;float:left;" src="http://reciplast.mx/masc/logoSpaceMathsBlue.png">   
+        <mat-card-title>
+                <h1 style="color:#112868;padding-right:80px;font-size:45px;">Registro</h1>
+            </mat-card-title>         
+        <form (ngSubmit)='signup' #loginForm="ngForm" style="margin-top:24%;;">
+            <div>
+                <mat-form-field>
+                    <input type='text' ngModel [(ngModel)]='user.name' name='name' matInput placeholder="nombres" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input type='email' ngModel [(ngModel)]='user.lastname' name='lastname' matInput placeholder="apellidos" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input type='email' #email ngModel [(ngModel)]='user.email' name='email' matInput placeholder="email" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input type='password' #password ngModel [(ngModel)]='user.password' name='password' matInput placeholder="password" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input type='password' ngModel [(ngModel)]='user.confirmationpassword' name='confirmpassword' matInput placeholder="confirmar password" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color">Registro</button>
+            </div>
+        </form>
+    </mat-card>
+</section>
