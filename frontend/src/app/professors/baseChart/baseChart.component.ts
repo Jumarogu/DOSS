@@ -1,4 +1,6 @@
 import { Component, EventEmitter} from '@angular/core';
+import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
  selector: 'baseChart',
@@ -9,22 +11,42 @@ export class baseChart {
    scaleShowVerticalLines: false,
    responsive: true
  };
- public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+ public barChartLabels:string[];
  public barChartType:string = 'bar';
  public barChartLegend:boolean = true;
-
+ public Loaded:boolean;
+ private dat:number[];
+ private isLoaded:boolean;
  public barChartData:any[] = [
-   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+   {data: [9,9], label: 'Promedio'}
  ];
+ constructor (private dataService: DataService, private auth: AuthService) {
+    this.isLoaded=false;
+}
+ngOnInit(){
+  this.dataService.getPromedio().subscribe( data=>{
+    console.log(data.responseRows.length);
+    this.barChartLabels= new Array(data.responseRows.length);
+    this.dat= new Array(data.responseRows.length);
+    for(var item in data.responseRows){
+        console.log(data.responseRows[item].Promedio);
+        this.dat[item]=data.responseRows[item].Promedio;
+        this.barChartLabels[item]="Level 0"+(+item+1)+"";
+    }
+    this.barChartData[0].data=this.dat;
+    this.isLoaded=true;
+})
+
+      
+}
 
  // events
  public chartClicked(e:any):void {
-   console.log(e);
+
  }
 
  public chartHovered(e:any):void {
-   console.log(e);
+ 
  }
 
  public randomize():void {

@@ -50,4 +50,10 @@ export class DataService {
     getDificil() : Observable<any> {
         return this.http.get( this.apiURL + '/game/dificil');
     }
+    getVisitas() : Observable<any> {
+        return this.http.get( this.apiURL + '/game/visitas');
+    }
+    getPromedio() : Observable<any> {
+        return this.http.get( this.apiURL + '/game/promedio');
+    }
 }

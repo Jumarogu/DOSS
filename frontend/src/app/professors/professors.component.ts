@@ -28,6 +28,7 @@ export class ProfessorsComponent implements OnInit{
    private easy_tema: any;
    private dataisLoaded : boolean;
    private data_isLoaded : boolean;
+   private visitas : any;
    
 
     
@@ -72,6 +73,11 @@ export class ProfessorsComponent implements OnInit{
                     console.log(data.responseRows[0].id);
                     this.easy_tema=data.responseRows[0];
                     this.data_isLoaded=true;
+                })
+                this.dataService.getVisitas().subscribe( data=>{
+                    console.log(data.responseRows.length);
+                    this.visitas=data.responseRows.length;
+                
                 })
 
             })
