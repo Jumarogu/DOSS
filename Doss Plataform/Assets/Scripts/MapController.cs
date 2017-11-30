@@ -11,10 +11,10 @@ public class MapController : MonoBehaviour
     private GameObject planetPanel;
     private Text planetName, planetDescription,playerName;
     public GameObject cookie;
-    public Sprite Lion;
-    public Sprite Dolphin;
+    public Sprite [] LeonSprites;
+    public Sprite [] DolphinSprites;
     private Image mascota;
-    public Button jugar,regresar;
+    public Button jugar,regresar,tienda;
     private Vector3 [] cameraPosition;
     public GameObject [] candados;
     private string selectedPlanetName;
@@ -29,6 +29,7 @@ public class MapController : MonoBehaviour
         
         regresar.onClick.AddListener(regresarCamara);
         jugar.onClick.AddListener(entrarJuego);
+        tienda.onClick.AddListener(irATienda);
         
         cameraPosition = new Vector3 [12];
         cameraPosition[0] = new Vector3(14.5f,-7.5f,-44.5f);
@@ -47,15 +48,33 @@ public class MapController : MonoBehaviour
         cookie = GameObject.Find("Cookies");
         Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
         playerName.text = cook["nombres"] + " " + cook["apellidos"];
-
         mascota = GameObject.Find("Mascota").GetComponent<Image>();
-
+        
         //Poner la mascota
         if(cook["grupo"] == "A"){
-            mascota.sprite = Dolphin;
+            //mascota.sprite = Dolphin;
+            string icono = cook["icono"];
+            switch (icono)
+            {
+                case("1"):
+                    mascota.sprite = DolphinSprites[1];
+                break;
+
+                case("2"):
+                    mascota.sprite = DolphinSprites[2];
+                break;
+
+                case("3"):
+                    mascota.sprite = DolphinSprites[3];
+                break;
+
+                default:
+                    mascota.sprite = DolphinSprites[0];
+                break;
+            }
         }
         if(cook["grupo"] == "b"){
-            mascota.sprite = Lion;
+            //mascota.sprite = Leon;
         }
 
         
@@ -93,6 +112,11 @@ public class MapController : MonoBehaviour
         this.transform.position = cameraPosition[11];
         planetPanel.SetActive(false);
     }
+
+    void irATienda(){
+        SceneManager.LoadScene("tienda");
+    }
+
     // Update is called once per frame
     void Update()
     {

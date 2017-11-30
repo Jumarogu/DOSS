@@ -20,7 +20,7 @@ public class Nivel0 : MonoBehaviour {
 	private float height,width,separacionNaves,i, posInicial;
 	private string [] respuestas;
 	private string respuestaNino;
-	private string URL = "http://10.43.59.23:8080/api/juega";
+	private string URL = "http://10.43.42.73:8080/api/juega";
 	private Camera cam; 
 	private UnityEngine.UI.Text [] ansTextArray;
 	private Text ganaste,vidas;

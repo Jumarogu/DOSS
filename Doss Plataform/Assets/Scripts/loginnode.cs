@@ -67,6 +67,7 @@ public class loginnode : MonoBehaviour
 			string[] keyValue = item.Split(':');
 			dictionary.Add(keyValue[0].Trim(), keyValue[1].Trim());
 		}
+		dictionary.Add("icono","0");
 		return dictionary;
 	}
 
