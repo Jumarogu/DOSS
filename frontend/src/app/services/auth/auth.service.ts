@@ -42,6 +42,7 @@ export class AuthService {
                 this.setSession(authResult);
                 this.dataService.getUserRol(username).subscribe(data => {
                     this.currentUser = data;
+                    console.log();
                     this.router.navigate(['/' + this.currentUser.rol]);
                 });
             }
@@ -49,7 +50,7 @@ export class AuthService {
     }
 
     public signup(email: string, password: string): void {
-        this.auth0.redirect.signupAndLogin({
+        this.auth0.signup({
             connection: 'Username-Password-Authentication',
             email,
             password,
