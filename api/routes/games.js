@@ -87,10 +87,10 @@ exports.registerGame = function(req, res) {
 
 exports.getHardGame = function (req, res) {
 
-    var selectQuery = 'SELECT * FROM juegomasdificil'
-
+    var selectQuery = "SELECT * FROM juegomasdificil WHERE grupo = ?";
+    var table = [req.params.grupo];
     //console.log(data);
-    selectQuery = mysql.format(selectQuery);
+    selectQuery =mysql.format(selectQuery,table);
     console.log(selectQuery);
 
     db.query(selectQuery, function(err, rows){
@@ -106,9 +106,9 @@ exports.getHardGame = function (req, res) {
 
 exports.getEasyGame = function (req, res) {
 
-    var selectQuery = 'SELECT * FROM juegomasfacil'
-    
-    selectQuery = mysql.format(selectQuery);
+    var selectQuery = "SELECT * FROM juegomasfacil WHERE grupo = ?";
+    var table = [req.params.grupo];    
+    selectQuery = mysql.format(selectQuery,table);
     console.log(selectQuery);
     
     db.query(selectQuery, function(err, rows){
@@ -123,10 +123,10 @@ exports.getEasyGame = function (req, res) {
 }
 
 exports.getAVG = function (req, res) {
-    var selectQuery = 'select juego,AVG(proporcion) as Promedio,grupo from proporcioncongrupo group by juego,grupo;'
-    
+    var selectQuery = "select * from promporgrupo where grupo= ?";
         //console.log(data);
-        selectQuery = mysql.format(selectQuery);
+        var table = [req.params.grupo];    
+        selectQuery = mysql.format(selectQuery,table);
         console.log(selectQuery);
     
         db.query(selectQuery, function(err, rows){
@@ -140,10 +140,11 @@ exports.getAVG = function (req, res) {
         });
 }
 exports.getVisitas = function (req, res) {
-    var selectQuery = 'select fecha from juegapartida group by fecha;'
+    var selectQuery = "select * from numvisitas where grupo= ?";
     
         //console.log(data);
-        selectQuery = mysql.format(selectQuery);
+        var table = [req.params.grupo];    
+        selectQuery = mysql.format(selectQuery,table);
         console.log(selectQuery);
     
         db.query(selectQuery, function(err, rows){
