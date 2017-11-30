@@ -9,7 +9,7 @@ import { HttpParams } from '@angular/common/http';
 @Injectable()
 export class DataService {
 
-    private apiURL = 'http://10.43.59.23:8080/api';
+    private apiURL = 'http://localhost:8080/api';
 
     constructor(private http: HttpClient) {
         

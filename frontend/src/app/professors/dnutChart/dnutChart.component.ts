@@ -30,9 +30,14 @@ export class dnutChart implements OnInit {
     ];
     constructor (private dataService: DataService, private auth: AuthService) {
       
-        }
-        ngOnInit(){
-          // this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+    }
+    ngOnInit(){
+        this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+            this.currentUser = data[0];
+            this.dataService.getAlumnosLastGame(this.currentUser.grupo).subscribe(data => {
+
+            })
+        })
           //   this.currentUser = data[0];
           //   console.log(this.currentUser.grupo);
 
@@ -48,7 +53,7 @@ export class dnutChart implements OnInit {
           // });
 
           
-        }
+    }
  // events
  public chartClicked(e:any):void {
    console.log(e);

@@ -15,7 +15,7 @@ export class TableComponent implements OnInit{
 
   @Input() dataSource: MatTableDataSource<any>;
 
-  displayedColumns = ['id', 'noLista', 'name', 'lastName', 'dateOfLastGame'];
+  displayedColumns = ['id', 'noLista', 'name', 'lastName', 'dateOfLastGame', 'desempeno'];
   //private dataSource : MatTableDataSource<any>;
 
   constructor (private dataService: DataService, private auth: AuthService) {

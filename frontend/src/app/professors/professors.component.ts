@@ -88,7 +88,8 @@ export class ProfessorsComponent implements OnInit{
                 noLista: alumnos[i].noLista, 
                 name: alumnos[i].Nombre, 
                 lastName: alumnos[i].Apellidos, 
-                dateOfLastGame: alumnos[i].Fecha
+                dateOfLastGame: alumnos[i].Fecha,
+                desempeno: alumnos[i].desempeno
             };
             
             this.ELEMENT_DATA.push(myobj);
@@ -105,4 +106,5 @@ export interface IElement {
     name: any;
     lastName: any;
     dateOfLastGame: any;
+    desempeno: any;
 }
