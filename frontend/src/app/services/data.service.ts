@@ -35,6 +35,13 @@ export class DataService {
             email: email};
         return this.http.post( this.apiURL + '/profesor/email', body);
     }
+    setUser(email: string, rol: string): Observable <any>{
+        const body = {
+            email: email,
+            rol: rol
+        };
+        return this.http.post( this.apiURL + '/user', body);
+    }
     getAlumnosLastGame(grupo: string) : Observable<any> {
         return this.http.get( this.apiURL + '/alumnos/lastgame/' + grupo );
     }
@@ -49,5 +56,14 @@ export class DataService {
     }
     getDificil() : Observable<any> {
         return this.http.get( this.apiURL + '/game/dificil');
+    }
+    registerTeacher(nombres: string, apellidos: string, email: string, grupo: string): Observable<any>{
+        const body = {
+            nombres: nombres,
+            apellidos: apellidos,
+            email: email,
+            grupo: grupo
+        };
+        return this.http.post( this.apiURL + '/profesor', body);
     }
 }

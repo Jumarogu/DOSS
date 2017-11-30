@@ -10,6 +10,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatTableDataSource} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -25,6 +26,7 @@ import {MatTableDataSource} from '@angular/material';
         MatGridListModule,
         MatSidenavModule,
         MatTableModule,
+        MatSelectModule
     ],
     exports: [
         MatCardModule,
@@ -37,6 +39,7 @@ import {MatTableDataSource} from '@angular/material';
         MatGridListModule,
         MatSidenavModule,
         MatTableModule,
+        MatSelectModule
     ]
 })
 export class AMaterialModule { }
