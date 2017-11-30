@@ -13,20 +13,28 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card id="avisos">
+            <mat-card id="avisos" *ngIf="this.dataisLoaded">
                 <mat-card-title>TEMAS DIFICILES</mat-card-title>
-                <baseChart></baseChart>
+                <img mat-card-image style="width: 30%;" src="http://www.clker.com/cliparts/M/h/R/9/8/H/red-led-on-hi.png">
+                <mat-card-content style="font-size:20px;text-align:left;">Nombre: {{hard_tema.nombre}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Descripción: {{hard_tema.descripcion}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Tema: {{hard_tema.tema}} </mat-card-content>
+                
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card id="avisos">
-                <mat-card-title>TEMAS INTERMEDIOS</mat-card-title>
-                <dnutChart></dnutChart>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card id="avisos">
+            <mat-card id="avisos" *ngIf="this.dataisLoaded">
                 <mat-card-title>TEMAS FACILES</mat-card-title>
+                <img mat-card-image style="width: 30%;" src="http://www.clker.com/cliparts/z/r/p/I/x/a/green-led-on-md.png">
+                <mat-card-content style="font-size:20px;text-align:left;">Nombre: {{hard_tema.nombre}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Descripción: {{hard_tema.descripcion}} </mat-card-content>
+                <mat-card-content style="font-size:20px;text-align:left;">Tema: {{hard_tema.tema}} </mat-card-content>
+                
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card id="avisos">
+                <mat-card-title></mat-card-title>
                 <dnutChart></dnutChart>
             </mat-card>
         </mat-grid-tile>
@@ -48,9 +56,7 @@
                 <dnutChart></dnutChart>
             </mat-card>
         </mat-grid-tile>
-        <mat-grid-tile colspan="4" rowspan="1">    
-        <table  *ngIf='dataLoaded' [dataSource]="dataSource" style="width:70%;max-height:90%;background-color:rgba(255, 255, 255, 0.85);min-height:85%;border-radius: 8px;"></table>
-            
-
+        <mat-grid-tile colspan="4" rowspan="1"> 
+            <table  *ngIf='dataLoaded' [dataSource]="dataSource" style="width:70%;max-height:90%;background-color:rgba(255, 255, 255, 0.85);min-height:85%;border-radius: 8px;"></table>
         </mat-grid-tile>
     </mat-grid-list>

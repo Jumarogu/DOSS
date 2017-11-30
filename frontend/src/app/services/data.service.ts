@@ -44,4 +44,10 @@ export class DataService {
     getMinGrade(grupo: string) : Observable<any> {
         return this.http.get( this.apiURL + '/alumnos/min/' + grupo );
     }
+    getFacil() : Observable<any> {
+        return this.http.get( this.apiURL + '/game/facil');
+    }
+    getDificil() : Observable<any> {
+        return this.http.get( this.apiURL + '/game/dificil');
+    }
 }

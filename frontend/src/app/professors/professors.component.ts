@@ -24,9 +24,13 @@ export class ProfessorsComponent implements OnInit{
    private currentUser: any;
    private alumnos: any[];
    private ELEMENT_DATA: IElement[];
+   private hard_tema: any;
+   private dataisLoaded : boolean;
+
     
     constructor(private router: Router, private dataService: DataService, private auth: AuthService) {
         this.dataLoaded = false;
+        this.dataisLoaded = false;
         if(this.auth.isAuthenticated()){
             this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
                 this.currentUser = data[0];
@@ -48,13 +52,23 @@ export class ProfessorsComponent implements OnInit{
                 var grp = new String(this.grupo);
                 //65 unicode de A
                 //66 unicode de B
-                if((this.grupo.charCodeAt(0))==65){
+                if((this.grupo.charCodeAt(0))==66){
                     this.mascota="http://reciplast.mx/masc/avatarLion.png";
                 }
-                if((this.grupo.charCodeAt(0))==66){
+                if((this.grupo.charCodeAt(0))==65){
                     this.mascota="http://reciplast.mx/masc/avatarDelfin.png";
                 }
+                this.dataService.getFacil().subscribe( data=>{
+                    console.log(data.responseRows[0].id);
+                    this.hard_tema=data.responseRows[0];
+                    this.dataisLoaded=true;
+                    // this.hard_tema="ID: "+data.responseRows[0].id+"Nombre: "+data.responseRows[0].nombre+"Tema: "+data.responseRows[0].tema
+                    // +"Descripción: "+data.responseRows[0].descripcion;
+                })
+
             })
+            
+
         }
     }
     fillDataSource(alumnos: any[]) {

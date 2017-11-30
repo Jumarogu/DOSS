@@ -32,20 +32,20 @@ export class dnutChart implements OnInit {
       
         }
         ngOnInit(){
-          this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
-            this.currentUser = data[0];
-            console.log(this.currentUser.grupo);
+          // this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+          //   this.currentUser = data[0];
+          //   console.log(this.currentUser.grupo);
 
-            this.dataService.getMaxGrade(this.currentUser.grupo).subscribe(data => {
-              this.max=data[0].Correctas;
-              console.log(this.max);
-            })
-            this.dataService.getMinGrade(this.currentUser.grupo).subscribe(data => {
-              this.min=data[0].Correctas;
-              console.log(this.min)
-            })
+          //   this.dataService.getMaxGrade(this.currentUser.grupo).subscribe(data => {
+          //     this.max=data[0].Correctas;
+          //     console.log(this.max);
+          //   })
+          //   this.dataService.getMinGrade(this.currentUser.grupo).subscribe(data => {
+          //    // this.min=data[0].Correctas;
+          //     console.log(this.min)
+          //   })
 
-          });
+          // });
 
           
         }
