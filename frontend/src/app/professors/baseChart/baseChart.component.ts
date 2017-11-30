@@ -16,6 +16,7 @@ export class baseChart {
  public barChartLegend:boolean = true;
  public Loaded:boolean;
  private dat:number[];
+ private grupo : string;
  private isLoaded:boolean;
  public barChartData:any[] = [
    {data: [9,9], label: 'Promedio'}
@@ -24,18 +25,22 @@ export class baseChart {
     this.isLoaded=false;
 }
 ngOnInit(){
-  this.dataService.getPromedio().subscribe( data=>{
-    console.log(data.responseRows.length);
-    this.barChartLabels= new Array(data.responseRows.length);
-    this.dat= new Array(data.responseRows.length);
-    for(var item in data.responseRows){
-        console.log(data.responseRows[item].Promedio);
-        this.dat[item]=data.responseRows[item].Promedio;
-        this.barChartLabels[item]="Level 0"+(+item+1)+"";
-    }
-    this.barChartData[0].data=this.dat;
-    this.isLoaded=true;
+  this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+    this.grupo=data[0].grupo;
+    this.dataService.getPromedio(this.grupo).subscribe( data=>{
+      console.log(data.responseRows.length);
+      this.barChartLabels= new Array(data.responseRows.length);
+      this.dat= new Array(data.responseRows.length);
+      for(var item in data.responseRows){
+          console.log(data.responseRows[item].Promedio);
+          this.dat[item]=data.responseRows[item].Promedio;
+          this.barChartLabels[item]="Level 0"+(+item+1)+"";
+      }
+      this.barChartData[0].data=this.dat;
+      this.isLoaded=true;
+  })
 })
+  
 
       
 }

@@ -51,17 +51,17 @@ export class DataService {
     getMinGrade(grupo: string) : Observable<any> {
         return this.http.get( this.apiURL + '/alumnos/min/' + grupo );
     }
-    getFacil() : Observable<any> {
-        return this.http.get( this.apiURL + '/game/facil');
+    getFacil(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/gam/facil/'+ grupo);
     }
-    getDificil() : Observable<any> {
-        return this.http.get( this.apiURL + '/game/dificil');
+    getDificil(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/gam/dificil/'+grupo);
     }
-    getVisitas() : Observable<any> {
-        return this.http.get( this.apiURL + '/game/visitas');
+    getVisitas(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/gamz/visitas/'+grupo);
     }
-    getPromedio() : Observable<any> {
-        return this.http.get( this.apiURL + '/game/promedio');
+    getPromedio(grupo: string) : Observable<any> {
+        return this.http.get( this.apiURL + '/game/promedio/'+grupo);
     }
     
     registerTeacher(nombres: string, apellidos: string, email: string, grupo: string): Observable<any>{

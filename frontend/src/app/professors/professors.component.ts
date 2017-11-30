@@ -63,18 +63,18 @@ export class ProfessorsComponent implements OnInit{
                 if((this.grupo.charCodeAt(0))==65){
                     this.mascota="http://reciplast.mx/masc/avatarDelfin.png";
                 }
-                this.dataService.getDificil().subscribe( data=>{
+                this.dataService.getDificil(this.grupo).subscribe( data=>{
                     console.log(data.responseRows[0].id);
                     this.hard_tema=data.responseRows[0];
                     this.dataisLoaded=true;
                 })
 
-                this.dataService.getFacil().subscribe( data=>{
+                this.dataService.getFacil(this.grupo).subscribe( data=>{
                     console.log(data.responseRows[0].id);
                     this.easy_tema=data.responseRows[0];
                     this.data_isLoaded=true;
                 })
-                this.dataService.getVisitas().subscribe( data=>{
+                this.dataService.getVisitas(this.grupo).subscribe( data=>{
                     console.log(data.responseRows.length);
                     this.visitas=data.responseRows.length;
                 
