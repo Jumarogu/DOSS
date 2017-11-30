@@ -108,6 +108,23 @@ exports.getEasyGame = function (req, res) {
 
     var selectQuery = 'SELECT * FROM juegomasfacil'
     
+    selectQuery = mysql.format(selectQuery);
+    console.log(selectQuery);
+    
+    db.query(selectQuery, function(err, rows){
+       if(err) {
+            console.log(err);
+            res.json({"Error" : true, "Message" : "Error executing SELECT QUERY", 'error' : err});
+        } else {
+            //console.log(rows);
+            res.status(200).json({'Error' : false, "Message" : 'SELECT HardGame', 'responseRows' : rows});
+        }
+    });
+}
+
+exports.getAVG = function (req, res) {
+    var selectQuery = 'select juego,AVG(proporcion) as Promedio,grupo from proporcioncongrupo group by juego,grupo;'
+    
         //console.log(data);
         selectQuery = mysql.format(selectQuery);
         console.log(selectQuery);
@@ -118,7 +135,24 @@ exports.getEasyGame = function (req, res) {
                 res.json({"Error" : true, "Message" : "Error executing SELECT QUERY", 'error' : err});
             } else {
                 //console.log(rows);
-                res.status(200).json({'Error' : false, "Message" : 'SELECT HardGame', 'responseRows' : rows});
+                res.status(200).json({'Error' : false, "Message" : 'SELECT juegaPartida', 'responseRows' : rows});
+            }
+        });
+}
+exports.getVisitas = function (req, res) {
+    var selectQuery = 'select fecha from juegapartida group by fecha;'
+    
+        //console.log(data);
+        selectQuery = mysql.format(selectQuery);
+        console.log(selectQuery);
+    
+        db.query(selectQuery, function(err, rows){
+            if(err) {
+                console.log(err);
+                res.json({"Error" : true, "Message" : "Error executing SELECT QUERY", 'error' : err});
+            } else {
+                //console.log(rows);
+                res.status(200).json({'Error' : false, "Message" : 'SELECT juegaPartida', 'responseRows' : rows});
             }
         });
 }

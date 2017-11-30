@@ -22,6 +22,7 @@ router.post('/api/login-alumno', loginHandler.loginStudent);
 router.post('/api/login', loginHandler.getLoggedUser);
 
 router.post('/api/profesor', teacherRoutes.registerTeacher);
+router.post('/api/user', teacherRoutes.setUser);
 
 // STUDENTS
 router.get('/api/alumno', studentsRoutes.getStudents);
@@ -55,6 +56,8 @@ router.get('/api/jugado/:alumnoId&juegoId', gamesRoutes.getStudentGameResults);
 
 router.get('/api/game/dificil', gamesRoutes.getHardGame);
 router.get('/api/game/facil', gamesRoutes.getEasyGame);
+router.get('/api/game/visitas', gamesRoutes.getVisitas);
+router.get('/api/game/promedio', gamesRoutes.getAVG);
 
 router.post('/api/juega', gamesRoutes.registerGame);
 

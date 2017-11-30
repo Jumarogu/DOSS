@@ -10,8 +10,8 @@ exports.registerTeacher = function(req, res) {
     var selectTable = ['correo', req.body.email];
     selectQuery = mysql.format(selectQuery, selectTable);
 
-    var query = "INSERT INTO ?? (id, nombres, apellidos, correo, contraseña) VALUES ( ?, ?, ?, ?, ?)";
-    var table = ['profesor', userID, req.body.nombres, req.body.apellidos, req.body.email, req.body.password];
+    var query = "INSERT INTO ?? (id, nombres, apellidos, correo, grupo) VALUES ( ?, ?, ?, ?, ?)";
+    var table = ['profesor', userID, req.body.nombres, req.body.apellidos, req.body.email, req.body.grupo];
     query = mysql.format(query, table);
     
     console.log(selectQuery);
@@ -54,8 +54,9 @@ exports.getTeacher = function (req, res) {
 
     var query = 'SELECT * FROM profesor WHERE CORREO = ?';
     var table = [req.body.email];
-    console.log('the actual fuck?' + req.body);
+    
     query = mysql.format(query, table);
+    console.log(query);
 
     db.query (query, function(err, rows) {
         if(err) {
@@ -68,6 +69,22 @@ exports.getTeacher = function (req, res) {
             }
         }  
     });
+}
+
+exports.setUser = function(req, res) {
+
+    var query = 'INSERT INTO USERS VALUES ( ?, ?)';
+    var table = [req.body.email, req.body.rol];
+
+    query = mysql.format(query, table);
+
+    db.query(query, (err, rows) => {
+        if(err){
+            res.json({"Error" : true, "Message" : "Error executing INSERT QUERY", 'error' : err}).status(500);
+        } else {
+            res.json(rows).status(200);
+        }
+    })
 }
 
 function randomID(min,max) {

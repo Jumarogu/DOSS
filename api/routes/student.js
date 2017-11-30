@@ -1,6 +1,4 @@
-
 var mysql = require('mysql');
-
 var db = require('../db');
 
 exports.getStudent = function (req, res) {
@@ -96,8 +94,8 @@ exports.getLastGame = function (req, res) {
 
     var query = 'SELECT * FROM LastPartida WHERE GRUPO = ?';
     var table = [req.params.group];
-    console.log(query + 'fuckofff');
     query = mysql.format(query, table);
+    console.log(query);
     db.query (query, function(err, rows) {
         if(err) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
@@ -116,8 +114,9 @@ exports.getGrades = function (req, res) {
 
     var query = 'SELECT * FROM sumascongrupo WHERE GRUPO = ?';
     var table = [req.params.group];
-    console.log(query + 'fuckofff');
     query = mysql.format(query, table);
+    console.log(query);
+
     db.query (query, function(err, rows) {
         if(err) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
@@ -135,8 +134,10 @@ exports.getMax = function (req, res) {
     
     var query = 'SELECT Alumno, Proporcion FROM proporcionConGrupo WHERE Proporcion = (SELECT MAX(Proporcion) FROM proporcionConGrupo) AND Grupo = ? '
     var table = [req.params.group];
-    console.log(query + 'fuckofff');
+    
     query = mysql.format(query, table);
+    console.log(query);
+
     db.query (query, function(err, rows) {
         if(err) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
@@ -154,8 +155,10 @@ exports.getMin = function (req, res) {
 
     var query = 'SELECT Alumno, Proporcion FROM proporcionConGrupo WHERE Proporcion = (SELECT MIN(Proporcion) FROM proporcionConGrupo) AND Grupo = ? ';
     var table = [req.params.group];
-    console.log(query + 'fuckofff');
+    
     query = mysql.format(query, table);
+    console.log(query);
+
     db.query (query, function(err, rows) {
         if(err) {
             res.json({"Error" : true, "Message" : "Error executing SELECT query", 'error' : err}).status(500);
@@ -180,10 +183,6 @@ exports.updateStudent = function (req, res) {
             res.status(200).json({"Error" : false, "Message" : "Student updated", "Alumno" : rows});
         }
     });
-    console.log(query);
-    console.log(req.params.id);
-    console.log(req.body);
-    //res.status(200).json({'message' : 'printing body'});
 }
 
 exports.registerStudent = function(req, res) {
