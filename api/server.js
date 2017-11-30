@@ -54,10 +54,10 @@ router.get('/api/jugado/:alumnoId', gamesRoutes.getStudentResults);
 router.get('/api/jugado/:grupoId', gamesRoutes.getGroupResults);
 router.get('/api/jugado/:alumnoId&juegoId', gamesRoutes.getStudentGameResults);
 
-router.get('/api/game/dificil', gamesRoutes.getHardGame);
-router.get('/api/game/facil', gamesRoutes.getEasyGame);
-router.get('/api/game/visitas', gamesRoutes.getVisitas);
-router.get('/api/game/promedio', gamesRoutes.getAVG);
+router.get('/api/gam/dificil/:grupo', gamesRoutes.getHardGame);
+router.get('/api/gam/facil/:grupo', gamesRoutes.getEasyGame);
+router.get('/api/gamz/visitas/:grupo', gamesRoutes.getVisitas);
+router.get('/api/game/promedio/:grupo', gamesRoutes.getAVG);
 
 router.post('/api/juega', gamesRoutes.registerGame);
 
