@@ -9,7 +9,7 @@ public class MapController : MonoBehaviour
 {
 
     private GameObject planetPanel;
-    private Text planetName, planetDescription,playerName;
+    private Text planetName, planetDescription,playerName, saldo;
     public GameObject cookie;
     public Sprite [] LeonSprites;
     public Sprite [] DolphinSprites;
@@ -25,6 +25,7 @@ public class MapController : MonoBehaviour
         planetName = GameObject.Find("PlanetInfo").GetComponentInChildren<UnityEngine.UI.Text>();
         planetDescription = GameObject.Find("PlanetDescription").GetComponent<UnityEngine.UI.Text>();
         playerName = GameObject.Find("NamePanel").GetComponentInChildren<UnityEngine.UI.Text>();
+        saldo = GameObject.Find("MoneyPanel").GetComponentInChildren<UnityEngine.UI.Text>();
         planetPanel.SetActive(false);
         
         regresar.onClick.AddListener(regresarCamara);
@@ -48,6 +49,7 @@ public class MapController : MonoBehaviour
         cookie = GameObject.Find("Cookies");
         Dictionary<string,string> cook = cookie.GetComponent<sesion>().getcookie();
         playerName.text = cook["nombres"] + " " + cook["apellidos"];
+        saldo.text = "$" + cook["dinero"];
         mascota = GameObject.Find("Mascota").GetComponent<Image>();
         
         //Poner la mascota
