@@ -35,6 +35,7 @@ export class DataService {
             email: email};
         return this.http.post( this.apiURL + '/profesor/email', body);
     }
+
     setUser(email: string, rol: string): Observable <any>{
         const body = {
             email: email,
@@ -72,5 +73,27 @@ export class DataService {
             grupo: grupo
         };
         return this.http.post( this.apiURL + '/profesor', body);
+    }
+
+    registerStudent(nombres: string, apellidos: string, cumpleanos: string, grupo: string, noLista: string, genero: string, profesorid: string, padreid: string): Observable<any> {
+        const body = {
+            nombres: nombres,
+            apellidos: apellidos,
+            genero: genero,
+            grupo: grupo,
+            profesorid: profesorid,
+            padreid: padreid,
+            noLista: noLista,
+            cumpleanos: cumpleanos
+        };
+        return this.http.post( this.apiURL + '/alumno', body);
+    }
+    registerParent (nombres: string, apellidos: string, email: string): Observable<any> {
+        const body = {
+            nombres: nombres,
+            apellidos: apellidos,
+            email: email
+        };
+        return this.http.post( this.apiURL + '/parent', body);
     }
 }

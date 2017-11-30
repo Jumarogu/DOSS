@@ -3,37 +3,63 @@
           
         <img mat-card-image style="width: 37%;float:left;" src="http://reciplast.mx/masc/logoSpaceMathsBlue.png">   
         <mat-card-title>
-                <h1 style="color:#112868;padding-right:80px;font-size:45px;">Registro</h1>
-            </mat-card-title>         
-        <form (ngSubmit)='signup' #loginForm="ngForm" style="margin-top:24%;;">
+            <h1 style="color:#112868;padding-right:80px;font-size:45px;">Registro de Alumno y Papá</h1>
+        </mat-card-title>
+        <br>
+        <mat-card-title>
+            <h2 style="color:#112868;">Información Alumno</h2>
+        </mat-card-title>          
+        <form (ngSubmit)='signup' #registerForm="ngForm" style="margin-top:5%;">
             <div>
                 <mat-form-field>
-                    <input type='text' ngModel [(ngModel)]='user.name' name='name' matInput placeholder="nombres" required>
+                    <input type='text' #nombres ngModel [(ngModel)]='this.alumno.nombres' name='name' matInput placeholder="Nombres" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='email' ngModel [(ngModel)]='user.lastname' name='lastname' matInput placeholder="apellidos" required>
+                    <input type='email' #apellidos ngModel [(ngModel)]='this.alumno.apellidos' name='lastname' matInput placeholder="Apellidos" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='email' #email ngModel [(ngModel)]='user.email' name='email' matInput placeholder="email" required>
+                    <input type='email' #cumpleanos ngModel [(ngModel)]='this.alumno.cumpleanos' name='cumpleanos' matInput placeholder="Cumpleaños (día/mes)" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='password' #password ngModel [(ngModel)]='user.password' name='password' matInput placeholder="password" required>
+                    <input type='text' #noLista ngModel [(ngModel)]='this.alumno.noLista' name='noLista' matInput placeholder="No. Lista" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field >
+                    <mat-select #grupo ngModel [(value)]="alumno.genero" [(ngModel)]='this.alumno.genero' name='genero' placeholder="Genero" >
+                    <mat-option value='F'>F</mat-option>
+                    <mat-option value='M'>M</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        <br>
+        <mat-card-title>
+            <h2 style="color:#112868;">Información Padre</h2>
+        </mat-card-title>    
+            <div>
+                <mat-form-field>
+                    <input type='text' #parentNombres ngModel [(ngModel)]='this.parent.nombres' name='nombres' matInput placeholder="Nombres" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input type='password' ngModel [(ngModel)]='user.confirmationpassword' name='confirmpassword' matInput placeholder="confirmar password" required>
+                    <input type='text' #parentApellidos ngModel [(ngModel)]='this.parent.apellidos' name='apellidos' matInput placeholder="Apellidos" required>
                 </mat-form-field>
             </div>
             <div>
-                <button mat-raised-button (click)='auth.signup(email.value, password.value)' class="default-primary-color">Registro</button>
+                <mat-form-field>
+                    <input type='email' #parentEmail ngModel [(ngModel)]='this.parent.email' name='email' matInput placeholder="Email" required>
+                </mat-form-field>
             </div>
-        </form>
+            <div>
+                <button mat-raised-button (click)='this.registerUsers()' class="default-primary-color">Registro</button>
+            </div>
+        </form> 
     </mat-card>
 </section>

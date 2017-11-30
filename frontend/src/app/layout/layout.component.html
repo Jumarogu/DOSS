@@ -15,6 +15,12 @@
                 </button>
             </mat-grid-tile>
             <mat-grid-tile>
+                <button (click)='this.router.navigate(["/professor/registro"]); sidenav.close()' mat-button style="border-radius: 5px;text-align:center;font-size:16px;">
+                    Registro
+                    <mat-icon style="padding-left:10px;">group_add</mat-icon>
+                </button>
+            </mat-grid-tile>
+            <mat-grid-tile>
                 <button (click)='auth.logout(); sidenav.close()' mat-button style="width:80%;border-radius: 5px;text-align:left;font-size:16px;">
                     Cerrar Sesion
                     <mat-icon style="padding-left:10px;">reply</mat-icon>

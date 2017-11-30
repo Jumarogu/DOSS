@@ -12,17 +12,45 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 
 export class RegistroComponent implements OnInit{
-    user: any;
-    api = 'http://localhost:8080';
+    private parent: any;
+    private alumno: any;
+    private professor: any;
+    
     constructor(private router: Router, private dataService: DataService, private auth: AuthService) {
-        this.user = {};
-        this.user.email = "";
-        this.user.password = "";
+        this.parent = {};
+        this.alumno = {};
+        this.professor = {};
 
-        this.dataService.getAlumnos().subscribe( data => {
-        });
+    }
+    registerUsers() {
+        console.log(' parent');
+
+        this.dataService.getUser(this.auth.currentUser.email).subscribe(data => {
+            console.log(data[0].id);
+            this.professor = data[0];
+
+            this.dataService.registerParent(this.parent.nombres, this.parent.apellidos, this.parent.email).subscribe( data => {
+                this.parent = data;
+                console.log(this.parent);
+                
+                this.dataService.setUser(this.parent.correo, 'parent').subscribe(data => {
+                    let pass = this.alumno.cumpleanos + this.alumno.noLista;
+                    this.auth.signup(this.parent.correo, pass);
+                    console.log('user parent setted' + this.parent.correo + ' with pass ' + pass);
+                })
+
+                this.dataService.registerStudent(this.alumno.nombres, this.alumno.apellidos, this.alumno.cumpleanos, this.professor.grupo, this.alumno.noLista, this.alumno.genero, this.professor.id, this.parent.id).subscribe(data => {
+                    console.log('Estudiante registrado ' + this.professor.grupo + ' ' + this.alumno.nombres);
+                    console.log(data);
+
+                    this.alumno = {};
+                    this.parent = {};
+                })
+            })
+
+        })
     }
     ngOnInit(): void {
-        // Make the HTTP request:
+        
       }
 }
